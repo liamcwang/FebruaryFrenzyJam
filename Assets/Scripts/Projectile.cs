@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
         if (origin != Origin.PLAYER) {
             Player p = other.gameObject.GetComponent<Player>();
             if (p != null) {
-                p.takeDamage(damage);
+                p.die();
                 Destroy(gameObject);
             }
         }

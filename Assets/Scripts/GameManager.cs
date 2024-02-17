@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager {
-    private static GameManager instance;
+    private static GameManager singletonInstance;
     public int enemyCount;
+
+    public Boss boss;
+    public Player player;
+    public MinimapCam minimapCam;
  
     private GameManager() {
         enemyCount = 0;
@@ -12,14 +16,13 @@ public class GameManager {
         // because the game manager will be created before the objects
     }    
  
-    public static GameManager Instance {
+    public static GameManager instance {
         get {
-            if(instance==null) {
-                instance = new GameManager();
+            if(singletonInstance==null) {
+                singletonInstance = new GameManager();
             }
 
- 
-            return instance;
+            return singletonInstance;
         }
     }
 
@@ -27,4 +30,14 @@ public class GameManager {
     public void Pause(bool paused) {
     }
 
+    public void GameStart() {
+        minimapCam.PlaceTowers();
+        Time.timeScale = 1;
+    }
+
+    public void EndGame() {
+        Time.timeScale = 0;
+    }
+
+    
 }

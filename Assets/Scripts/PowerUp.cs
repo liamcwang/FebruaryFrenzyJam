@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     public Player.PowerUp type;
-    public Player.Effect effect;
+    public float value = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +21,11 @@ public class PowerUp : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        GameObject go = other.gameObject;
-        if (go.GetComponent<Player>() != null) {
-
+        if (other.CompareTag("Player")) {
+            Player p = GameManager.instance.player;
+            Effect newEff = new Effect(true, value);
+            p.updatePowers(type, newEff);
+            Destroy(gameObject);
         }
     }
 }

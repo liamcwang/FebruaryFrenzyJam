@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private const int B_PLAYER = 0, B_ALLIES = 1, B_RANDOM = 2;
     public int health = 10;
     public float speed = 10f;
+    public float speedLimit = 100f;
     public float fireRate = 1f;
     private float fireTimer = 1f;
     public int damage = 1;
@@ -23,12 +24,12 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = Player.instance.transform;
+        target = GameManager.instance.player.transform;
         rb = GetComponent<Rigidbody2D>();
         fireTimer = 1/fireRate;
         StartCoroutine(Move());
         StartCoroutine(RandBehavior());
-        GameManager.Instance.enemyCount++;
+        GameManager.instance.enemyCount++;
     }
 
     // Update is called once per frame
@@ -37,7 +38,6 @@ public class Enemy : MonoBehaviour
         
         switch(behaviorState) {
             case B_RANDOM:
-                Vector3 randPos = Random.insideUnitCircle;
                 Vector2 randVect = Random.insideUnitCircle;
                 float randRotation = -Mathf.Atan2(randVect.x, randVect.y) * 180/Mathf.PI;
                 rb.rotation = randRotation;
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     }
 
     void OnDestroy() {
-        GameManager.Instance.enemyCount--;    
+        GameManager.instance.enemyCount--;    
     }
 
     public void takeDamage(int damage) {
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
                 case B_ALLIES:
                     break;
                 default:
-                    target = Player.instance.transform;
+                    target = GameManager.instance.player.transform;
                     break;
                 
             }
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
                           
             }
             rb.AddForce(forceVector, ForceMode2D.Impulse);
-            
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
             yield return new WaitForSeconds(moveTimer);
         }
     }
