@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
             projectile.damage = damage;
             projectile.speed = projectileSpeed;
             projectile.origin = Projectile.Origin.PLAYER;
-            yield return new WaitForSeconds(fireTimer); //wait 2 seconds
+            yield return new WaitForSeconds(fireTimer); 
         }
     }
 
