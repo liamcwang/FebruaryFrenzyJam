@@ -9,11 +9,18 @@ public class MinimapCam : MonoBehaviour
     public Camera camera;
     public float width;
     public float height;
+    public GameObject towerPrefab;
+    public LayerMask ignoreLayer;
     private float xWrap;
     private float yWrap;
     
     private Vector3 topRight;
     private Vector3 bottomLeft;
+
+    void Awake() {
+        GameManager.instance.minimapCam = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,14 +36,40 @@ public class MinimapCam : MonoBehaviour
 
         boundary.size = new Vector2(width, height);
 
-        
+        PlaceTowers();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void PlaceTowers() {
+        for (int i = 0; i < 15; i++) {
+            bool invalidPlace = true;
+            int loopCounter = 0;
+            while(invalidPlace) {
+                float xRand = Random.value;
+                float yRand = Random.value;
+
+                
+
+                Vector3 randPos = new Vector3(xRand, yRand, Camera.main.nearClipPlane);
+                randPos = camera.ViewportToWorldPoint(randPos);
+                Vector2 boxSize = new Vector2(5f, 10f);
+                Debug.Log(randPos);
+                RaycastHit2D hit = Physics2D.BoxCast(randPos, boxSize, 0f, Vector2.up, boxSize.y, ~ignoreLayer);
+                Debug.Log(hit.collider);
+                if (hit.collider == null) {
+                    //if (hit.collider.tag != "Tower") {
+                    GameObject newTower = Instantiate(towerPrefab, randPos, Quaternion.identity);
+                    invalidPlace = false;
+                }            
+                if (loopCounter >= 100) {
+                    Debug.LogWarning("Couldn't place tower after 100 times!");
+                    invalidPlace = false;
+                }
+                loopCounter++;
+            }
+        }
     }
+
+
 
     private void OnTriggerExit2D(Collider2D other) {
         // Debug.Log("I see this: " + other);

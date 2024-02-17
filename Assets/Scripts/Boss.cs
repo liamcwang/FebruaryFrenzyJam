@@ -6,7 +6,8 @@ public class Boss : MonoBehaviour
 {
     
     public float speed = 10f;
-    public float speedLimit = 100f;
+    public float minSpeed = 5f;
+    public float maxSpeed = 100f;
     public int health = 100;
     public int defense = 10;
     public float moveTimer = 0.5f; 
@@ -24,7 +25,8 @@ public class Boss : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         target = GameManager.instance.player.transform;
-        StartCoroutine(Move());
+        StartCoroutine(BossTimer());
+        
     }
 
     // Update is called once per frame
@@ -45,6 +47,22 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void Debuff(Tower.Debuff effect, float value) {
+        switch(effect) {
+            case Tower.Debuff.HP:
+                health -= (int)value;
+                break;
+            case Tower.Debuff.DEF:
+                defense -= (int)value;
+                break;
+            case Tower.Debuff.SPEED:
+                speed -= value;
+                break;
+            default:
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         Debug.Log("I hit: " + other);
 
@@ -54,7 +72,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    
+
 
     private IEnumerator Move() {
         while(true) {
@@ -63,8 +81,15 @@ public class Boss : MonoBehaviour
             forceVector= transform.up * speed;
                           
             rb.AddForce(forceVector, ForceMode2D.Impulse);
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, speedLimit);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
             yield return new WaitForSeconds(moveTimer);
         }
     }
+
+    private IEnumerator BossTimer() {
+        yield return new WaitForSeconds(spawnTimer);
+        StartCoroutine(Move());
+    }
+
+    
 }

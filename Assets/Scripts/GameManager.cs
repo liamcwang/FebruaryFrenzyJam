@@ -8,6 +8,7 @@ public class GameManager {
 
     public Boss boss;
     public Player player;
+    public MinimapCam minimapCam;
  
     private GameManager() {
         enemyCount = 0;
@@ -29,8 +30,14 @@ public class GameManager {
     public void Pause(bool paused) {
     }
 
-    public void EndGame() {
-        
+    public void GameStart() {
+        minimapCam.PlaceTowers();
+        Time.timeScale = 1;
     }
 
+    public void EndGame() {
+        Time.timeScale = 0;
+    }
+
+    
 }

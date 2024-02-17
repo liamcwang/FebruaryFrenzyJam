@@ -81,26 +81,46 @@ public class Player : MonoBehaviour
 
     
     private IEnumerator Shoot() {
+        int bulletCount = 0;
         while(alive) {
-            spawnProjectile(Instantiate(p, transform.position, transform.rotation), Projectile.Behavior.DEFAULT);
-
+            Quaternion rot = transform.rotation;
+            Vector3 eulerRot = rot.eulerAngles;
+            spawnProjectile(p, transform.position,rot, Projectile.Behavior.DEFAULT);
 
             if(powUpDict[PowerUp.MORE_BULLETS].active) {
-                for (int i = 0; i < (int)powUpDict[PowerUp.MORE_BULLETS].magnitude; i++) {
+                
+                int numBullets = (int)powUpDict[PowerUp.MORE_BULLETS].magnitude;
+                for (int i = 0; i < numBullets; i++) {
                     int mod2 = i % 2;
                     int LeftRight =  (mod2 == 0) ? -1 : 1;
                     float offset = 15 * LeftRight;
-                    spawnProjectile(Instantiate(p, transform.position, transform.rotation), Projectile.Behavior.DEFAULT);
+                    Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + offset);
+                    spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
                 }
             }
 
-            
+            if(powUpDict[PowerUp.BEHIND_SHOT].active) {
+                if (bulletCount % 3 == 0) {
+                    Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + 180);
+                    spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
+                }
+            } else if(powUpDict[PowerUp.HOMING_SHOT].active){
+                if (bulletCount % 5 == 0) {
+                    spawnProjectile(p, transform.position, rot, Projectile.Behavior.HOMING);
+                }
+            } else {
+                bulletCount = 0;
+            }
+
+            bulletCount++;
+
             yield return new WaitForSeconds(fireTimer); 
         }
     }
     
 
-    private void spawnProjectile(GameObject pGameObject, Projectile.Behavior PB) {
+    private void spawnProjectile(GameObject pGameObject, Vector3 position, Quaternion rot, Projectile.Behavior PB) {
+        Instantiate(pGameObject, position, rot);
         Projectile projectile = pGameObject.GetComponent<Projectile>();
         projectile.damage = damage;
         projectile.speed = projectileSpeed;

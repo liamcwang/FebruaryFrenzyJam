@@ -22,6 +22,6 @@ public class Tower : MonoBehaviour
     }
 
     void OnDestroy() {
-
+        
     }
 }
