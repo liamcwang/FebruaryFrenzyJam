@@ -5,10 +5,11 @@ using UnityEngine;
 public class MinimapCam : MonoBehaviour
 {
     public BoxCollider2D boundary;
-    public Camera cam;
+    public Camera camera;
     public float width;
     public float height;
-    
+    private float xWrap;
+    private float yWrap;
     
     private Vector3 topRight;
     private Vector3 bottomLeft;
@@ -16,14 +17,15 @@ public class MinimapCam : MonoBehaviour
     void Start()
     {
         boundary = GetComponent<BoxCollider2D>();
-        cam = GetComponent<Camera>();
+        camera = GetComponent<Camera>();
         topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
         bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
         height = topRight.y - bottomLeft.y;
-
-        Debug.Log("Camera scaled pixel height: " + cam.pixelWidth);
         
+        xWrap = PlayerCam.instance.width / 2;
+        yWrap = PlayerCam.instance.height / 2;
+
         boundary.size = new Vector2(width, height);
 
         
@@ -45,16 +47,16 @@ public class MinimapCam : MonoBehaviour
         Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
         
         if(pos.x < 0f) {
-            xAxis = topRight.x + 5;
+            xAxis = topRight.x + xWrap;
         }
         if(pos.x > 1f){
-            xAxis = bottomLeft.x - 5;
+            xAxis = bottomLeft.x - xWrap;
         } 
         if(pos.y < 0f){
-            yAxis = topRight.y + 5;
+            yAxis = topRight.y + yWrap;
         } 
         if(pos.y > 1f){
-            yAxis = bottomLeft.y - 5;
+            yAxis = bottomLeft.y - yWrap;
         }
         
         oTransform.position = new Vector3(xAxis,yAxis,zAxis);

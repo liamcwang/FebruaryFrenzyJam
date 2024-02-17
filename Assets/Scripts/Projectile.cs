@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Hit!");
+        //Debug.Log("Hit!");
         if (origin != Origin.ENEMY) {
             Enemy e = other.gameObject.GetComponent<Enemy>();
             if (e != null) {
