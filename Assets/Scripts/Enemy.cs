@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
         fireTimer = 1/fireRate;
         StartCoroutine(Move());
         StartCoroutine(RandBehavior());
+        GameManager.Instance.enemyCount++;
     }
 
     // Update is called once per frame
@@ -51,8 +52,8 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void FixedUpdate() {
-
+    void OnDestroy() {
+        GameManager.Instance.enemyCount--;    
     }
 
     public void takeDamage(int damage) {
