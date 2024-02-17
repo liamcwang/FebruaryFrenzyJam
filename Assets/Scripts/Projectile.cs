@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public enum Origin{VOID, PLAYER, ENEMY};
     public float speed = 20;
     public int damage = 1;
+    public Origin origin = Origin.VOID;
     [SerializeField] private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -22,7 +24,26 @@ public class Projectile : MonoBehaviour
 
     void OnBecameInvisible()
     {
-        Debug.Log("bye");
+        // Debug.Log("bye");
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log("Hit!");
+        if (origin != Origin.ENEMY) {
+            Enemy e = other.gameObject.GetComponent<Enemy>();
+            if (e != null) {
+                e.takeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        if (origin != Origin.PLAYER) {
+            Player p = other.gameObject.GetComponent<Player>();
+            if (p != null) {
+                p.takeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
+        
     }
 }
