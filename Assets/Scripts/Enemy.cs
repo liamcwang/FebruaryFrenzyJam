@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
     private const int B_PLAYER = 0, B_ALLIES = 1, B_RANDOM = 2;
     public int health = 10;
     public float speed = 10f;
-    public float speedLimit = 20f;
     public float fireRate = 1f;
     private float fireTimer = 1f;
     public int damage = 1;
@@ -84,6 +83,7 @@ public class Enemy : MonoBehaviour
                     break;
                 
             }
+            //yield return new WaitForSeconds(behaviorTimer);
         }
     }
 

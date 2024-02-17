@@ -17,6 +17,21 @@ public class PlayerCam : MonoBehaviour
     void Update()
     {
         Vector3 playerPos = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, playerPos, trackingFactor * Time.deltaTime);
+        Vector3 currentPos = transform.position;
+        Vector3 heading = new Vector3();
+
+        heading.x = playerPos.x - currentPos.x;
+        heading.y = playerPos.y - currentPos.y;
+        heading.z = playerPos.z - currentPos.z;
+
+        float distanceSquared = heading.x * heading.x + heading.y * heading.y + heading.z * heading.z;
+        float distance = Mathf.Sqrt(distanceSquared);
+        if (distance < 100f) {
+            transform.position = Vector3.Lerp(transform.position, playerPos, trackingFactor * Time.deltaTime);
+        } else{
+            transform.position = playerPos;
+        }
+
+        
     }
 }

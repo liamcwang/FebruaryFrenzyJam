@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float speed = 20;
     public int damage = 1;
     public Origin origin = Origin.VOID;
+    public Behavior behaviorState;
     [SerializeField] private Rigidbody2D rb;
 
     // Start is called before the first frame update
