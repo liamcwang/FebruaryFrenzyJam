@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MinimapCam : MonoBehaviour
 {
+    // seamless world problem
     public BoxCollider2D boundary;
     public Camera camera;
     public float width;
@@ -38,7 +39,7 @@ public class MinimapCam : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        Debug.Log("I see this: " + other);
+        // Debug.Log("I see this: " + other);
         Transform oTransform = other.gameObject.transform;
         float xAxis = oTransform.position.x;
         float yAxis = oTransform.position.y;

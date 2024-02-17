@@ -6,22 +6,22 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public enum PowerUp{FIRE_RATE, DODGE, MORE_BULLETS, HOMING_SHOT, BEHIND_SHOT};
-    public static Player instance;
     public float maxSpeed = 10f;
     // public float acceleration = 10f;
     public float rotationFactor = 15f;
     public float fireRate = 1f;
-    public int health = 10;
+    // public int health = 10;
     public int damage = 1;
     public float projectileSpeed = 20f;
     public GameObject p;
+    public float dodgeRange = 20f;
     private Dictionary<PowerUp, Effect> powUpDict;
     private float fireTimer = 1f;
     private bool alive = true;
     private Rigidbody2D rb;
 
     void Awake() {
-        instance = this;
+        GameManager.instance.player = this;
     }
 
     // Start is called before the first frame update
@@ -31,9 +31,9 @@ public class Player : MonoBehaviour
         fireTimer = 1/fireRate;
         powUpDict = new Dictionary<PowerUp, Effect>();
         foreach (PowerUp pow in Enum.GetValues(typeof(PowerUp))) {
-            powUpDict.Add(pow, new Effect(false, null));
+            powUpDict.Add(pow, new Effect(false, 0));
         }
-        StartCoroutine(Shoot());
+        //StartCoroutine(Shoot());
         
     }
 
@@ -46,22 +46,24 @@ public class Player : MonoBehaviour
         // float yShoot = Input.GetAxis("ShootVertical");
         Vector2 motionVector = Vector2.zero;
 
-        
+
         if (xMove != 0 || yMove != 0) {
             motionVector = new Vector2 (xMove, yMove);
         }
+        
+        rb.velocity = motionVector * maxSpeed;
+
         if (xShoot != 0) {
             float newAngle = -xShoot * rotationFactor;
             //float newAngle = -Mathf.Atan2(xShoot, yShoot) * 180/Mathf.PI;
             //newAngle = Mathf.Lerp(rb.rotation, newAngle, Time.deltaTime * rotationFactor);
             rb.rotation += newAngle * Time.deltaTime; 
+            // don't interpolate
         }
-        
-        rb.velocity = motionVector * maxSpeed;
 
     }
 
-    private void updatePowers(PowerUp pow, Effect newEff) {
+    public void updatePowers(PowerUp pow, Effect newEff) {
         powUpDict[pow] = newEff;
         switch(pow) {
             case PowerUp.FIRE_RATE:
@@ -77,6 +79,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    
     private IEnumerator Shoot() {
         while(alive) {
             spawnProjectile(Instantiate(p, transform.position, transform.rotation), Projectile.Behavior.DEFAULT);
@@ -95,6 +98,7 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(fireTimer); 
         }
     }
+    
 
     private void spawnProjectile(GameObject pGameObject, Projectile.Behavior PB) {
         Projectile projectile = pGameObject.GetComponent<Projectile>();
@@ -104,13 +108,19 @@ public class Player : MonoBehaviour
         projectile.behaviorState = PB;
     }
 
-    public void takeDamage(int damage) {
-        health -= damage;
-
-        if (health <= 0) {
+    public void die() {
+        if (powUpDict[PowerUp.DODGE].active) {
+            updatePowers(PowerUp.DODGE, new Effect(false, 0));
+            Vector2 randVect = UnityEngine.Random.insideUnitCircle;
+            randVect.Normalize();
+            transform.position += new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
             
+        } else {
+            GameManager.instance.EndGame();
         }
     }
+
+
     /*
     void OnBecameInvisible()
     {
@@ -137,16 +147,17 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(xAxis,yAxis,zAxis);
     }*/
 
-    public class Effect {
-        public bool active;
-        public object magnitude;
-        public Type t;
+}
 
-        public Effect(bool status, object o) {
+[System.Serializable]
+public struct Effect {
+        public bool active;
+        public float magnitude;
+        // public Type t;
+
+        public Effect(bool status, float value) {
             active = status;
-            magnitude = o;
+            magnitude = value;
         }
 
     }
-
-}

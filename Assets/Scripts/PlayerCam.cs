@@ -25,7 +25,7 @@ public class PlayerCam : MonoBehaviour
     void Start()
     {
         camera = GetComponent<Camera>();
-        player = Player.instance;
+        player = GameManager.instance.player;
         Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
         Vector3 bottomLeft = camera.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
