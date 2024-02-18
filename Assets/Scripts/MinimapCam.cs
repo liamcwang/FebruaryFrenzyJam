@@ -6,7 +6,7 @@ public class MinimapCam : MonoBehaviour
 {
     // seamless world problem
     public BoxCollider2D boundary;
-    public Camera camera;
+    public Camera thisCamera;
     public float width;
     public float height;
     public GameObject towerPrefab;
@@ -25,7 +25,7 @@ public class MinimapCam : MonoBehaviour
     void Start()
     {
         boundary = GetComponent<BoxCollider2D>();
-        camera = GetComponent<Camera>();
+        thisCamera = GetComponent<Camera>();
         topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
         bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
@@ -50,14 +50,17 @@ public class MinimapCam : MonoBehaviour
                 
 
                 Vector3 randPos = new Vector3(xRand, yRand, Camera.main.nearClipPlane);
-                randPos = camera.ViewportToWorldPoint(randPos);
+                randPos = GetComponent<Camera>().ViewportToWorldPoint(randPos);
                 Vector2 boxSize = new Vector2(5f, 10f);
                 Debug.Log(randPos);
-                RaycastHit2D hit = Physics2D.BoxCast(randPos, boxSize, 0f, Vector2.up, boxSize.y, ~ignoreLayer);
+                RaycastHit2D hit = Physics2D.BoxCast(randPos, boxSize, 0f, Vector2.up, 0f, ~ignoreLayer);
                 Debug.Log(hit.collider);
                 if (hit.collider == null) {
                     //if (hit.collider.tag != "Tower") {
                     GameObject newTower = Instantiate(towerPrefab, randPos, Quaternion.identity);
+                    Tower towerComp = newTower.GetComponent<Tower>();
+                    int mode = i % 3;
+                    towerComp.setMode(mode);
                     invalidPlace = false;
                 }            
                 if (loopCounter >= 100) {

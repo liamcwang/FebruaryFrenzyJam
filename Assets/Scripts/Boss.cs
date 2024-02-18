@@ -47,7 +47,8 @@ public class Boss : MonoBehaviour
         }
     }
 
-    public void Debuff(Tower.Debuff effect, float value) {
+    public void debuff(Tower.Debuff effect, float value) {
+        Debug.Log("Alas, I am debuffed! " + effect + ": " + value);
         switch(effect) {
             case Tower.Debuff.HP:
                 health -= (int)value;
@@ -64,7 +65,7 @@ public class Boss : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("I hit: " + other);
+        // Debug.Log("I hit: " + other);
 
         if (other.CompareTag("Player")) {
             Player player = GameManager.instance.player;

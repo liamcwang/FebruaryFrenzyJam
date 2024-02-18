@@ -98,8 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf36aad5bbc7324fad9538a449d85c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   effect: 0
-  magnitude: 0
+  debuffValues:
+  - 10
+  - 1
+  - 5
 --- !u!61 &4396131920338784726
 BoxCollider2D:
   m_ObjectHideFlags: 0

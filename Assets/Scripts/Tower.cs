@@ -5,8 +5,10 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public enum Debuff{HP, DEF, SPEED};
+    public float health = 10f;
     public Debuff effect;
-    public float magnitude;
+    [SerializeField] private float[] debuffValues;
+    private float magnitude;
     private Boss boss;
 
     // Start is called before the first frame update
@@ -21,7 +23,19 @@ public class Tower : MonoBehaviour
         
     }
 
-    void OnDestroy() {
-        
+    public void setMode(int mode) {
+        effect = (Debuff) mode;
+        magnitude = debuffValues[mode];
     }
+
+    public void takeDamage(float damage) {
+        health -= damage;
+
+        if (health <= 0) {
+            // looks safer to do it this way, rather than OnDestroy
+            boss.debuff(effect, magnitude);
+            Destroy(gameObject);
+        }
+    }
+
 }
