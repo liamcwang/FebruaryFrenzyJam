@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private float fireTimer = 1f;
     private bool alive = true;
     private Rigidbody2D rb;
+    public bool canShoot = true;
 
     void Awake() {
         GameManager.instance.player = this;
@@ -33,7 +34,14 @@ public class Player : MonoBehaviour
         foreach (PowerUp pow in Enum.GetValues(typeof(PowerUp))) {
             powUpDict.Add(pow, new Effect(false, 0));
         }
-        //StartCoroutine(Shoot());
+        #if UNITY_EDITOR
+        if (canShoot) {
+            StartCoroutine(Shoot());
+        }
+        #else
+        StartCoroutine(Shoot());
+        #endif
+        
         
     }
 
@@ -90,10 +98,14 @@ public class Player : MonoBehaviour
             if(powUpDict[PowerUp.MORE_BULLETS].active) {
                 
                 int numBullets = (int)powUpDict[PowerUp.MORE_BULLETS].magnitude;
+                int offMult = 0;
                 for (int i = 0; i < numBullets; i++) {
                     int mod2 = i % 2;
+                    if (mod2 == 0) {
+                        offMult++;
+                    }
                     int LeftRight =  (mod2 == 0) ? -1 : 1;
-                    float offset = 15 * LeftRight;
+                    float offset = 15 * LeftRight * offMult;
                     Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + offset);
                     spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
                 }
@@ -113,6 +125,7 @@ public class Player : MonoBehaviour
             }
 
             bulletCount++;
+            bulletCount = bulletCount % 30; //limit to how high it goes to prevent overflow, not really needed but y'know
 
             yield return new WaitForSeconds(fireTimer); 
         }
@@ -140,32 +153,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-    /*
-    void OnBecameInvisible()
-    {
-        float xAxis = transform.position.x;
-        float yAxis = transform.position.y;
-        float zAxis = transform.position.z;
-
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        Vector3 topRight = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
-        Vector3 bottomLeft = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
-        if(pos.x < 0f) {
-            xAxis = topRight.x;
-        }
-        if(pos.x > 1f){
-            xAxis = bottomLeft.x;
-        } 
-        if(pos.y < 0f){
-            yAxis = topRight.y;
-        } 
-        if(pos.y > 1f){
-            yAxis = bottomLeft.y;
-        }
-        
-        transform.position = new Vector3(xAxis,yAxis,zAxis);
-    }*/
 
 }
 

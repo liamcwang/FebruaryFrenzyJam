@@ -570,6 +570,7 @@ MonoBehaviour:
   projectileSpeed: 20
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   dodgeRange: 20
+  canShoot: 1
 --- !u!60 &960355510
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -726,7 +727,7 @@ MonoBehaviour:
   trackingFactor: 5
   width: 0
   height: 0
-  camera: {fileID: 0}
+  thisCamera: {fileID: 0}
 --- !u!1 &1141491344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,7 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundary: {fileID: 0}
-  camera: {fileID: 0}
+  thisCamera: {fileID: 0}
   width: 0
   height: 0
   towerPrefab: {fileID: 3757507520117358010, guid: 223a9b60d6acc0f4cbc70e81abd5c49b, type: 3}
@@ -1261,8 +1262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f4f1a523f98f2498fb3f80eff7b47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  value: 0
+  type: 4
+  value: 6
 --- !u!212 &2016082523
 SpriteRenderer:
   m_ObjectHideFlags: 0
