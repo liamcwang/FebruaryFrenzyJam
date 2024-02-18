@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8446796499027999324}
-  - component: {fileID: 8329342381210466559}
   - component: {fileID: 7622054876472999096}
+  - component: {fileID: 8329342381210466559}
   - component: {fileID: 1677743630980479207}
   - component: {fileID: 2454232221773682422}
   m_Layer: 0
@@ -35,6 +35,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7622054876472999096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795670934223383931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510754d5b7a13e44f9703f43bc3f2377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  damage: 1
+  origin: 1
+  behaviorState: 0
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rb: {fileID: 1677743630980479207}
+  spiRend: {fileID: 8329342381210466559}
+  sprites: []
 --- !u!212 &8329342381210466559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,21 +109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7622054876472999096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795670934223383931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 510754d5b7a13e44f9703f43bc3f2377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
-  damage: 1
-  rb: {fileID: 1677743630980479207}
 --- !u!50 &1677743630980479207
 Rigidbody2D:
   serializedVersion: 4

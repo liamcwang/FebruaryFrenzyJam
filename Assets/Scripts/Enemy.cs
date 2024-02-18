@@ -16,20 +16,28 @@ public class Enemy : MonoBehaviour
     public float moveTimer = 0.5f; 
     public float turnFactor = 5f;
     public GameObject p;
+    [SerializeField] private GameObject powUpPrefab;
+    [SerializeField] private Sprite[] sprites;
     private int behaviorState;
     private Transform target;
     private Rigidbody2D rb;
+    private SpriteRenderer spiRend;
+    
     /* targets you, but has a hard time getting to you */
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameManager.instance.player.transform;
+        spiRend = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         fireTimer = 1/fireRate;
         StartCoroutine(Move());
         StartCoroutine(RandBehavior());
         GameManager.instance.enemyCount++;
+        int randInt = Random.Range(0, sprites.Length);
+        spiRend.sprite = sprites[randInt];
+
     }
 
     // Update is called once per frame

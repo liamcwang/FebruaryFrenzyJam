@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
             
         } else {
-            GameManager.instance.EndGame();
+            GameManager.Defeat();
         }
     }
 
