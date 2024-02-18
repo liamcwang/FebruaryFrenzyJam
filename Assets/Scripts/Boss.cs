@@ -20,6 +20,8 @@ public class Boss : MonoBehaviour
     private Transform target;
     public AudioClip clip;
     public AudioSource audioSaus;
+    public Animator anim;
+    private float initialHealth;
 
     void Awake() {
         GameManager.instance.boss = this;
@@ -30,15 +32,19 @@ public class Boss : MonoBehaviour
     {
         audioSaus = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         target = GameManager.instance.player.transform;
         StartCoroutine(Scanning());
         StartCoroutine(BossTimer());
+        initialHealth = health;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        float calc = health/initialHealth * 100f;
+        anim.SetFloat("BossHealth", calc);
         LookAt(target.position);
     }
 
