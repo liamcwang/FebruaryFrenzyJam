@@ -189,11 +189,19 @@ MonoBehaviour:
   speedLimit: 100
   fireRate: 1
   damage: 1
-  projectileSpeed: 20
+  projectileSpeed: 5
   behaviorTimer: 5
   moveTimer: 1
   turnFactor: 5
-  p: {fileID: 0}
+  p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
+  powUpPrefab: {fileID: 2980965563536737882, guid: 218f2982d50e94c42aff273e25be7abe, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 8d9d86952f142414b8ea0ab81deabfe7, type: 3}
+  - {fileID: 21300000, guid: de7b25f4bc7e9a248b9a4249ae37d9da, type: 3}
+  - {fileID: 21300000, guid: b434a864525580d499b2ace7a200b22b, type: 3}
+  - {fileID: 21300000, guid: ece1840f2d125cd4e8ff369758a71c8d, type: 3}
+  - {fileID: 21300000, guid: 0c145e0a9b4370641a24a683e39b0a5b, type: 3}
+  - {fileID: 21300000, guid: f1382b3979718e3478ac4dc1952401a8, type: 3}
 --- !u!61 &3058349226755390219
 BoxCollider2D:
   m_ObjectHideFlags: 0

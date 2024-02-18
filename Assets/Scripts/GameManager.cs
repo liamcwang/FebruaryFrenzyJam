@@ -48,7 +48,8 @@ public class GameManager {
     [MenuItem("GameManager/MainMenu")]
     public static void MainMenu() {
         singletonInstance = new GameManager(GameState.START_MENU);
-        SceneManager.LoadScene("testing");
+        var activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
         Time.timeScale = 0;
     }
 
@@ -56,7 +57,8 @@ public class GameManager {
     public static void RestartGame(){
         Debug.Log("Restarting...");
         singletonInstance = new GameManager(GameState.RESTART);
-        SceneManager.LoadScene("testing");
+        var activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
         Time.timeScale = 1;
     }
 

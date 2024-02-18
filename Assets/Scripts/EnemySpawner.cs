@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
             if (enemy == null) {
                 Debug.LogWarning("No enemy available to spawn");
             }
-            // Instantiate(enemy, transform.position, Quaternion.zero);
+            Instantiate(enemy, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(spawnTimer);
         }
     } 

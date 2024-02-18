@@ -10,10 +10,13 @@ public class Tower : MonoBehaviour
     [SerializeField] private float[] debuffValues;
     private float magnitude;
     private Boss boss;
+    [SerializeField] private SpriteRenderer spiRend;
+    [SerializeField] private Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
     {
+        spiRend.sprite = sprites[(int) effect];
         boss = GameManager.instance.boss;
     }
 

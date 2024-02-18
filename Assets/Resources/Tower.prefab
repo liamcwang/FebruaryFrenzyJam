@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 534242998349950166}
-  - component: {fileID: 3607854293582401096}
   - component: {fileID: 3854195371048568288}
+  - component: {fileID: 3607854293582401096}
   - component: {fileID: 4396131920338784726}
   m_Layer: 0
   m_Name: Tower
@@ -34,6 +34,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3854195371048568288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757507520117358010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf36aad5bbc7324fad9538a449d85c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  effect: 0
+  debuffValues:
+  - 10
+  - 1
+  - 5
+  spiRend: {fileID: 3607854293582401096}
+  sprites:
+  - {fileID: -1817147490, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
+  - {fileID: -1581845013, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
+  - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
 --- !u!212 &3607854293582401096
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86,24 +109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3854195371048568288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3757507520117358010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf36aad5bbc7324fad9538a449d85c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 10
-  effect: 0
-  debuffValues:
-  - 10
-  - 1
-  - 5
 --- !u!61 &4396131920338784726
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
         fireTimer = 1/fireRate;
         StartCoroutine(Move());
         StartCoroutine(RandBehavior());
+        StartCoroutine(Shoot());
         GameManager.instance.enemyCount++;
         int randInt = Random.Range(0, sprites.Length);
         spiRend.sprite = sprites[randInt];
@@ -67,6 +68,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
 
         if (health <= 0) {
+            PowerUp.SpawnPowerUp(transform.position);
             Destroy(gameObject);
         }
     }
@@ -79,7 +81,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator RandBehavior() {
         while(true) {  
-            yield return new WaitForSeconds(behaviorTimer);
+            
             int rand = Random.Range(B_PLAYER, (B_RANDOM + 1));
             behaviorState = rand;
             Debug.Log("I am now tracking: " + rand);
@@ -91,6 +93,7 @@ public class Enemy : MonoBehaviour
                     break;
                 
             }
+            yield return new WaitForSeconds(behaviorTimer);
             //yield return new WaitForSeconds(behaviorTimer);
         }
     }

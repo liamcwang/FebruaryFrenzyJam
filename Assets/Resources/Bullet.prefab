@@ -53,10 +53,14 @@ MonoBehaviour:
   behaviorState: 0
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   rb: {fileID: 1677743630980479207}
   spiRend: {fileID: 8329342381210466559}
-  sprites: []
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &8329342381210466559
 SpriteRenderer:
   m_ObjectHideFlags: 0
