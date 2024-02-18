@@ -11,6 +11,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spiRend;
     private Effect effect;
+    [SerializeField]private AudioClip clip;
     private static Object PowFab;
     
 
@@ -44,6 +45,7 @@ public class PowerUp : MonoBehaviour
         if (other.CompareTag("Player")) {
             Player p = GameManager.instance.player;
             p.updatePowers(type, effect);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             Destroy(gameObject);
         }
     }

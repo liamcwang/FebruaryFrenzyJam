@@ -86,16 +86,16 @@ public class MinimapCam : MonoBehaviour
 
             Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
             
-            if(pos.x < 0f) {
+            if(xAxis < 0f) {
                 xAxis = topRight.x + xWrap;
             }
-            if(pos.x > 1f){
+            if(xAxis> 0f){
                 xAxis = bottomLeft.x - xWrap;
             } 
-            if(pos.y < 0f){
+            if(yAxis < 0f){
                 yAxis = topRight.y + yWrap;
             } 
-            if(pos.y > 1f){
+            if(yAxis > 0f){
                 yAxis = bottomLeft.y - yWrap;
             }
             

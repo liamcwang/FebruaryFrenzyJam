@@ -21,8 +21,10 @@ public class MainMenu : MonoBehaviour
         switch(GameManager.instance.gameState) {
             case GameManager.GameState.START_MENU:
                 setScreen(ScreenName.START, true);
+                Time.timeScale = 0;
             break;
             default:
+                PlayerCam.instance.startUp();
             break;
         }
     }
@@ -35,6 +37,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame() {
         setScreen(ScreenName.START, false);
         GameManager.StartGame();
+        PlayerCam.instance.startUp();
     }
 
     public void RestartGame() {

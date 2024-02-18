@@ -27,7 +27,7 @@ public class GameManager {
         get {
             if(singletonInstance==null) {
                 singletonInstance = new GameManager(GameState.START_MENU);
-                Time.timeScale = 0;
+
             }
 
             return singletonInstance;
@@ -50,7 +50,6 @@ public class GameManager {
         singletonInstance = new GameManager(GameState.START_MENU);
         var activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
-        Time.timeScale = 0;
     }
 
     [MenuItem("GameManager/RestartGame")]

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private bool alive = true;
     private Rigidbody2D rb;
     public bool canShoot = true;
+    public AudioClip[] sounds;
+    public AudioSource audioSaus;
 
     void Awake() {
         GameManager.instance.player = this;
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSaus = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         fireTimer = 1/fireRate;
         powUpDict = new Dictionary<PowerUp, Effect>();
@@ -91,6 +94,7 @@ public class Player : MonoBehaviour
     private IEnumerator Shoot() {
         int bulletCount = 0;
         while(alive) {
+            yield return new WaitForSeconds(fireTimer); 
             Quaternion rot = transform.rotation;
             Vector3 eulerRot = rot.eulerAngles;
             spawnProjectile(p, transform.position,rot, Projectile.Behavior.DEFAULT);
@@ -127,7 +131,7 @@ public class Player : MonoBehaviour
             bulletCount++;
             bulletCount = bulletCount % 30; //limit to how high it goes to prevent overflow, not really needed but y'know
 
-            yield return new WaitForSeconds(fireTimer); 
+            
         }
     }
     
@@ -139,6 +143,8 @@ public class Player : MonoBehaviour
         projectile.speed = projectileSpeed;
         projectile.origin = Projectile.Origin.PLAYER;
         projectile.behaviorState = PB;
+        audioSaus.clip = sounds[0];
+        audioSaus.Play(0);
     }
 
     public void die() {
@@ -149,6 +155,7 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
             
         } else {
+            AudioSource.PlayClipAtPoint(sounds[2], transform.position);
             GameManager.Defeat();
         }
     }

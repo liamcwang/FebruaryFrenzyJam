@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     private Boss boss;
     [SerializeField] private SpriteRenderer spiRend;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,9 @@ public class Tower : MonoBehaviour
         if (health <= 0) {
             // looks safer to do it this way, rather than OnDestroy
             boss.debuff(effect, magnitude);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             Destroy(gameObject);
+            
         }
     }
 
