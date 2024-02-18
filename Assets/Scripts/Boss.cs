@@ -13,8 +13,13 @@ public class Boss : MonoBehaviour
     public float moveTimer = 0.5f; 
     public float turnFactor = 5f;
     public float spawnTimer = 120f;
+    public float scanTimer = 5f;
+    public int screamFrequency = 10;
+    private bool asleep = true;
     private Rigidbody2D rb;
     private Transform target;
+    public AudioClip clip;
+    public AudioSource audioSaus;
 
     void Awake() {
         GameManager.instance.boss = this;
@@ -23,8 +28,10 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSaus = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         target = GameManager.instance.player.transform;
+        StartCoroutine(Scanning());
         StartCoroutine(BossTimer());
         
     }
@@ -74,13 +81,26 @@ public class Boss : MonoBehaviour
         }
     }
 
-
+    private IEnumerator Scanning(){
+        while (asleep) {
+            yield return new WaitForSeconds(5f);
+            PlayerCam.instance.PlaySound(PlayerCam.SCANNING);
+        }
+        
+    }
 
     private IEnumerator Move() {
+        int moveCount = 1;
         while(true) {
+            moveCount = moveCount % screamFrequency;
+            if (moveCount == 0) {
+                audioSaus.Play(0);
+            }
+            
             Vector2 forceVector;
             
             forceVector= transform.up * speed;
+            
                           
             rb.AddForce(forceVector, ForceMode2D.Impulse);
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
@@ -90,8 +110,12 @@ public class Boss : MonoBehaviour
 
     private IEnumerator BossTimer() {
         yield return new WaitForSeconds(spawnTimer);
+        asleep = false;
+        PlayerCam.instance.PlaySound(PlayerCam.BOSS_THEME);
         StartCoroutine(Move());
     }
+
+    
 
     
 }

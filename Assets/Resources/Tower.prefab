@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: -1817147490, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
   - {fileID: -1581845013, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
   - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
+  clip: {fileID: 8300000, guid: 3aa826f7737b45a43a6febe508208c88, type: 3}
 --- !u!212 &3607854293582401096
 SpriteRenderer:
   m_ObjectHideFlags: 0
