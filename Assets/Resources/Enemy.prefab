@@ -203,7 +203,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ece1840f2d125cd4e8ff369758a71c8d, type: 3}
   - {fileID: 21300000, guid: 0c145e0a9b4370641a24a683e39b0a5b, type: 3}
   - {fileID: 21300000, guid: f1382b3979718e3478ac4dc1952401a8, type: 3}
-  clip: {fileID: 8300000, guid: 1c248e47aa6228042aeea19a7a20d3c3, type: 3}
+  clip: {fileID: 8300000, guid: 939a198092c9d944aa975b0bb9230cb1, type: 3}
 --- !u!61 &3058349226755390219
 BoxCollider2D:
   m_ObjectHideFlags: 0

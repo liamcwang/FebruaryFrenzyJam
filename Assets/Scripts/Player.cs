@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public enum PowerUp{FIRE_RATE, DODGE, MORE_BULLETS, HOMING_SHOT, BEHIND_SHOT};
+    public enum PowerUp{FIRE_RATE, DODGE, MORE_BULLETS, BEHIND_SHOT};
     public float maxSpeed = 10f;
     // public float acceleration = 10f;
     public float rotationFactor = 15f;
@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private bool alive = true;
     private Rigidbody2D rb;
     public bool canShoot = true;
+    public bool canDie = true;
     public AudioClip[] sounds;
     public AudioSource audioSaus;
 
@@ -120,10 +121,10 @@ public class Player : MonoBehaviour
                     Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + 180);
                     spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
                 }
-            } else if(powUpDict[PowerUp.HOMING_SHOT].active){
+            /*} else if(powUpDict[PowerUp.HOMING_SHOT].active){
                 if (bulletCount % 5 == 0) {
                     spawnProjectile(p, transform.position, rot, Projectile.Behavior.HOMING);
-                }
+                }*/
             } else {
                 bulletCount = 0;
             }
@@ -155,8 +156,17 @@ public class Player : MonoBehaviour
             transform.position += new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
             
         } else {
-            AudioSource.PlayClipAtPoint(sounds[2], transform.position);
+            AudioSource.PlayClipAtPoint(sounds[3], transform.position);
+            #if UNITY_EDITOR
+            if (canDie) {
+                GameManager.Defeat();
+                Destroy(gameObject);
+            }
+            #else
             GameManager.Defeat();
+            Destroy(gameObject);
+            #endif
+            
         }
     }
 

@@ -46,7 +46,7 @@ public class GameManager {
 
 
     [MenuItem("GameManager/MainMenu")]
-    public static void MainMenu() {
+    public static void returnToMaMe() {
         singletonInstance = new GameManager(GameState.START_MENU);
         var activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
@@ -62,11 +62,14 @@ public class GameManager {
     }
 
     public static void Victory() {
+        instance.gameState = GameState.VICTORY;
+        instance.mainMenu.Victory();
         
     }
 
     public static void Defeat(){
-
+        instance.gameState = GameState.DEFEAT;
+        instance.mainMenu.Defeat();
     }
 
     [MenuItem("GameManager/EnemyCount")]
