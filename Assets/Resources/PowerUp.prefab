@@ -106,8 +106,8 @@ MonoBehaviour:
   - {fileID: -39855834, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
   - {fileID: 1011708463, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
   - {fileID: -1359107930, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  - {fileID: -1214077056, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
   - {fileID: 1124270405, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  - {fileID: -1214077056, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
   clip: {fileID: 8300000, guid: f5952b9c23649e548b04e16f0937a977, type: 3}
 --- !u!61 &7017771526961074363
 BoxCollider2D:
