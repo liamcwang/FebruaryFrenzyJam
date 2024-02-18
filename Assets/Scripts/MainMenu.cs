@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -18,11 +19,19 @@ public class MainMenu : MonoBehaviour
     }
 
     void Start() {
+        foreach (UIObject UIObj in UIElements) {
+            setScreen(UIObj.name, false);
+        }
+
         switch(GameManager.instance.gameState) {
             case GameManager.GameState.START_MENU:
                 setScreen(ScreenName.START, true);
                 Time.timeScale = 0;
-            break;
+                break;
+            case GameManager.GameState.VICTORY:
+                setScreen(ScreenName.VICTORY, true);
+                StartCoroutine(ExitSequence());
+                break;
             default:
                 PlayerCam.instance.startUp();
             break;
@@ -45,7 +54,33 @@ public class MainMenu : MonoBehaviour
     }
 
     public void returnToMaMe(){
-        GameManager.MainMenu();
+        GameManager.returnToMaMe();
+    }
+
+    public void Victory(){
+        PlayerCam.instance.VictoryTheme();
+        StartCoroutine(VictorySequence());
+    }
+
+    public void Defeat() {
+        StartCoroutine(DefeatSequence());
+    }
+
+    private IEnumerator DefeatSequence() {
+        yield return new WaitForSeconds(2f);
+        setScreen(ScreenName.DEFEAT, true);
+        Time.timeScale = 0;
+    }
+
+    private IEnumerator VictorySequence() {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("Victory");
+        
+    }
+
+    private IEnumerator ExitSequence() {
+        yield return new WaitForSeconds(4f);
+        Application.Quit();
     }
 }
 

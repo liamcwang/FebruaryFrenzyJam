@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    public const int START_JINGLE= 0, ANTIVIRUS= 1, SCANNING = 2, BOSS_THEME = 3;
+    public const int START_JINGLE= 0, ANTIVIRUS= 1, SCANNING = 2, BOSS_THEME = 3, VICTORY = 4;
     const float Z_POS = -10;
     public static PlayerCam instance;
     public float trackingFactor = 1f;
@@ -51,6 +51,16 @@ public class PlayerCam : MonoBehaviour
     public IEnumerator QueueSound(float time, int i) {
         yield return new WaitForSeconds(time);
         PlaySound(i);
+    }
+
+    public void BossTime() {
+        PlaySound(BOSS_THEME);
+        audioSaus.loop = true;
+    }
+
+    public void VictoryTheme() {
+        PlaySound(VICTORY);
+        audioSaus.loop = false;
     }
 
     // Update is called once per frame
