@@ -184,10 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3703655e8df9e0b408c253771a1653fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  speed: 5
+  health: 1
+  speed: 3
   speedLimit: 100
-  fireRate: 1
+  fireRate: 0.5
   damage: 1
   projectileSpeed: 5
   behaviorTimer: 5
