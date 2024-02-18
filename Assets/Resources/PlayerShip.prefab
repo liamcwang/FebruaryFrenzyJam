@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5119127537775380305}
   - component: {fileID: 6553749777271461687}
   - component: {fileID: 7804434664626374189}
-  - component: {fileID: 1674479990983063889}
+  - component: {fileID: 7287666361011184709}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Player
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 226f5820c754c7e41ad07d8074ea8374, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,8 +136,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!60 &1674479990983063889
-PolygonCollider2D:
+--- !u!70 &7287666361011184709
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -168,22 +168,9 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
-  m_UseDelaunayMesh: 0
+  m_Offset: {x: 0, y: -0.05911541}
+  m_Size: {x: 0.39974976, y: 0.9060211}
+  m_Direction: 0
 --- !u!1 &973148405948420962
 GameObject:
   m_ObjectHideFlags: 0
