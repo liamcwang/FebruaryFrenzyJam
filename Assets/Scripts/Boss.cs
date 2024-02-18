@@ -84,7 +84,9 @@ public class Boss : MonoBehaviour
     private IEnumerator Scanning(){
         while (asleep) {
             yield return new WaitForSeconds(5f);
-            PlayerCam.instance.PlaySound(PlayerCam.SCANNING);
+            if (asleep) {
+                PlayerCam.instance.PlaySound(PlayerCam.SCANNING);
+            }
         }
         
     }
@@ -111,7 +113,7 @@ public class Boss : MonoBehaviour
     private IEnumerator BossTimer() {
         yield return new WaitForSeconds(spawnTimer);
         asleep = false;
-        PlayerCam.instance.PlaySound(PlayerCam.BOSS_THEME);
+        PlayerCam.instance.BossTime();
         StartCoroutine(Move());
     }
 
