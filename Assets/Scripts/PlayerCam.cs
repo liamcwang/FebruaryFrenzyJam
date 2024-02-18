@@ -10,7 +10,7 @@ public class PlayerCam : MonoBehaviour
     private Player player;
     public float width;
     public float height;
-    public Camera camera;
+    public Camera thisCamera;
 
     private Vector3 playerPos;
     private Vector3 currentPos;
@@ -24,10 +24,10 @@ public class PlayerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = GetComponent<Camera>();
+        thisCamera = GetComponent<Camera>();
         player = GameManager.instance.player;
-        Vector3 topRight = camera.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
-        Vector3 bottomLeft = camera.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
+        Vector3 topRight = thisCamera.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
+        Vector3 bottomLeft = thisCamera.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
         height = topRight.y - bottomLeft.y;
 

@@ -10,18 +10,22 @@ public class Projectile : MonoBehaviour
     public int damage = 1;
     public Origin origin = Origin.VOID;
     public Behavior behaviorState;
+    public LayerMask ignoreLayer;
     [SerializeField] private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb.velocity = transform.up * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = transform.up * speed;
+        
+        /*if (behaviorState == Behavior.HOMING) {
+            
+        }*/
     }
 
     void OnBecameInvisible()
@@ -33,11 +37,22 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hit!");
         if (origin != Origin.ENEMY) {
-            Enemy e = other.gameObject.GetComponent<Enemy>();
-            if (e != null) {
-                e.takeDamage(damage);
+            GameObject gabe = other.gameObject;
+            // lotta room for improvement here
+            if (gabe.GetComponent<Enemy>() != null) {
+                gabe.GetComponent<Enemy>().takeDamage(damage);
                 Destroy(gameObject);
             }
+            if (gabe.GetComponent<Tower>() != null ) {
+                gabe.GetComponent<Tower>().takeDamage(damage);
+                Destroy(gameObject);
+            }
+            if (gabe.GetComponent<Boss>() != null) {
+                gabe.GetComponent<Boss>().takeDamage(damage);
+                Destroy(gameObject);
+            }
+            
+
         }
         if (origin != Origin.PLAYER) {
             Player p = other.gameObject.GetComponent<Player>();
