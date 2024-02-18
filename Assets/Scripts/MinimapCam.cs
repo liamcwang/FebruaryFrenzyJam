@@ -6,7 +6,7 @@ public class MinimapCam : MonoBehaviour
 {
     // seamless world problem
     public BoxCollider2D boundary;
-    public Camera thisCamera;
+    [HideInInspector] public Camera thisCamera;
     public float width;
     public float height;
     public GameObject towerPrefab;

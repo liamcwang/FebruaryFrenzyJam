@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GameManager {
     private static GameManager singletonInstance;
@@ -28,9 +29,11 @@ public class GameManager {
 
     // Add your game mananger members here
     public void Pause(bool paused) {
+        if (paused) Time.timeScale = 0;
+        else Time.timeScale = 1;
     }
 
-    public void GameStart() {
+    public void StartGame() {
         minimapCam.PlaceTowers();
         Time.timeScale = 1;
     }
@@ -39,5 +42,10 @@ public class GameManager {
         Time.timeScale = 0;
     }
 
-    
+    [MenuItem("GameManager/EnemyCount")]
+    static void EnemyCount()
+    {
+        Debug.Log(instance.enemyCount);
+    }
+
 }
