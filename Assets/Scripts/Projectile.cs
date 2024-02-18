@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
     public Behavior behaviorState;
     public LayerMask ignoreLayer;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private SpriteRenderer spiRend;
+    [SerializeField] private Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,6 @@ public class Projectile : MonoBehaviour
         /*if (behaviorState == Behavior.HOMING) {
             
         }*/
-    }
-
-    void OnBecameInvisible()
-    {
-        // Debug.Log("bye");
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

@@ -6,7 +6,7 @@ public class MinimapCam : MonoBehaviour
 {
     // seamless world problem
     public BoxCollider2D boundary;
-    public Camera thisCamera;
+    [HideInInspector] public Camera thisCamera;
     public float width;
     public float height;
     public GameObject towerPrefab;
@@ -76,26 +76,30 @@ public class MinimapCam : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other) {
         // Debug.Log("I see this: " + other);
-        Transform oTransform = other.gameObject.transform;
-        float xAxis = oTransform.position.x;
-        float yAxis = oTransform.position.y;
-        float zAxis = oTransform.position.z;
+        if (other.gameObject.GetComponent<Projectile>() == null) {
+            Transform oTransform = other.gameObject.transform;
+            float xAxis = oTransform.position.x;
+            float yAxis = oTransform.position.y;
+            float zAxis = oTransform.position.z;
 
-        Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
-        
-        if(pos.x < 0f) {
-            xAxis = topRight.x + xWrap;
+            Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
+            
+            if(pos.x < 0f) {
+                xAxis = topRight.x + xWrap;
+            }
+            if(pos.x > 1f){
+                xAxis = bottomLeft.x - xWrap;
+            } 
+            if(pos.y < 0f){
+                yAxis = topRight.y + yWrap;
+            } 
+            if(pos.y > 1f){
+                yAxis = bottomLeft.y - yWrap;
+            }
+            
+            oTransform.position = new Vector3(xAxis,yAxis,zAxis);
+        }else {
+            Destroy(other.gameObject);
         }
-        if(pos.x > 1f){
-            xAxis = bottomLeft.x - xWrap;
-        } 
-        if(pos.y < 0f){
-            yAxis = topRight.y + yWrap;
-        } 
-        if(pos.y > 1f){
-            yAxis = bottomLeft.y - yWrap;
-        }
-        
-        oTransform.position = new Vector3(xAxis,yAxis,zAxis);
-    }
+    } 
 }

@@ -10,7 +10,7 @@ public class PlayerCam : MonoBehaviour
     private Player player;
     public float width;
     public float height;
-    public Camera thisCamera;
+    [HideInInspector]public Camera thisCamera;
 
     private Vector3 playerPos;
     private Vector3 currentPos;
