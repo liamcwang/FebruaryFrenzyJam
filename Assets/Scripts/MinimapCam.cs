@@ -10,6 +10,7 @@ public class MinimapCam : MonoBehaviour
     public float width;
     public float height;
     public GameObject towerPrefab;
+    public GameObject enemySpawner;
     public LayerMask ignoreLayer;
     private float xWrap;
     private float yWrap;
@@ -58,6 +59,7 @@ public class MinimapCam : MonoBehaviour
                 if (hit.collider == null) {
                     //if (hit.collider.tag != "Tower") {
                     GameObject newTower = Instantiate(towerPrefab, randPos, Quaternion.identity);
+                    Instantiate(enemySpawner, randPos, Quaternion.identity);
                     Tower towerComp = newTower.GetComponent<Tower>();
                     int mode = i % 3;
                     towerComp.setMode(mode);
@@ -84,16 +86,17 @@ public class MinimapCam : MonoBehaviour
 
             Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
             
+
             if(pos.x < 0f) {
                 xAxis = topRight.x + xWrap;
             }
-            if(pos.x > 1f){
+            if(pos.x > 0.99f){
                 xAxis = bottomLeft.x - xWrap;
             } 
             if(pos.y < 0f){
                 yAxis = topRight.y + yWrap;
             } 
-            if(pos.y > 1f){
+            if(pos.y  > 0.99f){
                 yAxis = bottomLeft.y - yWrap;
             }
             

@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1382b3979718e3478ac4dc1952401a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,23 +184,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3703655e8df9e0b408c253771a1653fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  speed: 5
-  speedLimit: 100
-  fireRate: 1
+  health: 1
+  speed: 15
+  speedLimit: 30
+  fireRate: 0.5
   damage: 1
-<<<<<<< Updated upstream
-  projectileSpeed: 20
-=======
-  projectileSpeed: 3
->>>>>>> Stashed changes
+  projectileSpeed: 5
   behaviorTimer: 5
-  moveTimer: 1
+  moveTimer: 1.5
   turnFactor: 5
-<<<<<<< Updated upstream
-  p: {fileID: 0}
-=======
-  dropRate: 0.17
+  dropRate: 0.05
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   powUpPrefab: {fileID: 2980965563536737882, guid: 218f2982d50e94c42aff273e25be7abe, type: 3}
   sprites:
@@ -211,7 +204,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0c145e0a9b4370641a24a683e39b0a5b, type: 3}
   - {fileID: 21300000, guid: f1382b3979718e3478ac4dc1952401a8, type: 3}
   clip: {fileID: 8300000, guid: 939a198092c9d944aa975b0bb9230cb1, type: 3}
->>>>>>> Stashed changes
 --- !u!61 &3058349226755390219
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -244,18 +236,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0020263195, y: 0.00405252}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1.0283675, y: 0.8890426}
   m_EdgeRadius: 0
 --- !u!50 &7587237506567984003
 Rigidbody2D:
@@ -270,7 +262,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

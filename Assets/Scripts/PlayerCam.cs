@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+    public const int START_JINGLE= 0, ANTIVIRUS= 1, SCANNING = 2, BOSS_THEME = 3, VICTORY = 4;
     const float Z_POS = -10;
     public static PlayerCam instance;
     public float trackingFactor = 1f;
@@ -11,6 +12,9 @@ public class PlayerCam : MonoBehaviour
     public float width;
     public float height;
     [HideInInspector]public Camera thisCamera;
+    public AudioClip[] sounds;
+    public AudioSource audioSaus;
+
 
     private Vector3 playerPos;
     private Vector3 currentPos;
@@ -24,13 +28,39 @@ public class PlayerCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSaus = GetComponent<AudioSource>();
         thisCamera = GetComponent<Camera>();
         player = GameManager.instance.player;
         Vector3 topRight = thisCamera.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
         Vector3 bottomLeft = thisCamera.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
         height = topRight.y - bottomLeft.y;
+       
+    }
 
+    public void PlaySound(int i) {
+        audioSaus.clip = sounds[i];
+        audioSaus.Play(0);
+    }
+
+    public void startUp() {
+        PlaySound(START_JINGLE);
+        StartCoroutine(QueueSound(audioSaus.clip.length, ANTIVIRUS));
+    }
+
+    public IEnumerator QueueSound(float time, int i) {
+        yield return new WaitForSeconds(time);
+        PlaySound(i);
+    }
+
+    public void BossTime() {
+        PlaySound(BOSS_THEME);
+        audioSaus.loop = true;
+    }
+
+    public void VictoryTheme() {
+        PlaySound(VICTORY);
+        audioSaus.loop = false;
     }
 
     // Update is called once per frame

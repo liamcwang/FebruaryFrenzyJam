@@ -28,7 +28,7 @@ public class GameManager {
         get {
             if(singletonInstance==null) {
                 singletonInstance = new GameManager(GameState.START_MENU);
-                Time.timeScale = 0;
+
             }
 
             return singletonInstance;
@@ -51,8 +51,8 @@ public class GameManager {
     #endif
     public static void returnToMaMe() {
         singletonInstance = new GameManager(GameState.START_MENU);
-        SceneManager.LoadScene("testing");
-        Time.timeScale = 0;
+        var activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
     }
 
     #if UNITY_EDITOR
@@ -61,16 +61,20 @@ public class GameManager {
     public static void RestartGame(){
         Debug.Log("Restarting...");
         singletonInstance = new GameManager(GameState.RESTART);
-        SceneManager.LoadScene("testing");
+        var activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
         Time.timeScale = 1;
     }
 
     public static void Victory() {
+        instance.gameState = GameState.VICTORY;
+        instance.mainMenu.Victory();
         
     }
 
     public static void Defeat(){
-
+        instance.gameState = GameState.DEFEAT;
+        instance.mainMenu.Defeat();
     }
 
     #if UNITY_EDITOR

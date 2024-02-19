@@ -11,6 +11,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spiRend;
     private Effect effect;
+    [SerializeField]private AudioClip clip;
     private static Object PowFab;
     
 
@@ -44,6 +45,7 @@ public class PowerUp : MonoBehaviour
         if (other.CompareTag("Player")) {
             Player p = GameManager.instance.player;
             p.updatePowers(type, effect);
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             Destroy(gameObject);
         }
     }
@@ -60,10 +62,10 @@ public class PowerUp : MonoBehaviour
         if (PowFab == null) {
             PowFab = Resources.Load<GameObject>("PowerUp");
         }
-        GameObject newObject = Instantiate(PowFab) as GameObject;
+        GameObject newObject = Instantiate((GameObject)PowFab, location, Quaternion.identity);
         PowerUp newPow = newObject.GetComponent<PowerUp>();
         int randInt = Random.Range(0, Player.PowerUp.GetNames(typeof(Player.PowerUp)).Length);
         newPow.type = (Player.PowerUp) randInt;
-        Instantiate(newObject, location, Quaternion.identity);
+        //Instantiate(newObject, location, Quaternion.identity);
     }
 }

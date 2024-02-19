@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public enum Origin{VOID, PLAYER, ENEMY};
+    public enum Origin{PLAYER, ENEMY, VOID};
     public enum Behavior{DEFAULT, HOMING};
     public float speed = 20;
     public int damage = 1;
@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spiRend.sprite = sprites[(int) origin];
         rb.velocity = transform.up * speed;
         StartCoroutine(Decay(decayTimer));
     }

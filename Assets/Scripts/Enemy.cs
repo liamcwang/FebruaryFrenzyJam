@@ -15,9 +15,11 @@ public class Enemy : MonoBehaviour
     public float behaviorTimer = 5f;
     public float moveTimer = 0.5f; 
     public float turnFactor = 5f;
+    public float dropRate = 0.2f;
     public GameObject p;
     [SerializeField] private GameObject powUpPrefab;
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private AudioClip clip;
     private int behaviorState;
     private Transform target;
     private Rigidbody2D rb;
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
         fireTimer = 1/fireRate;
         StartCoroutine(Move());
         StartCoroutine(RandBehavior());
+        StartCoroutine(Shoot());
         GameManager.instance.enemyCount++;
         int randInt = Random.Range(0, sprites.Length);
         spiRend.sprite = sprites[randInt];
@@ -67,6 +70,11 @@ public class Enemy : MonoBehaviour
         health -= damage;
 
         if (health <= 0) {
+            float randFloat = Random.Range(0f, 1f);
+            if (randFloat < (dropRate + 0.1)) {
+                PowerUp.SpawnPowerUp(transform.position);
+            }
+            AudioSource.PlayClipAtPoint(clip, transform.position);
             Destroy(gameObject);
         }
     }
@@ -79,7 +87,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator RandBehavior() {
         while(true) {  
-            yield return new WaitForSeconds(behaviorTimer);
+            
             int rand = Random.Range(B_PLAYER, (B_RANDOM + 1));
             behaviorState = rand;
             Debug.Log("I am now tracking: " + rand);
@@ -91,6 +99,7 @@ public class Enemy : MonoBehaviour
                     break;
                 
             }
+            yield return new WaitForSeconds(behaviorTimer);
             //yield return new WaitForSeconds(behaviorTimer);
         }
     }
