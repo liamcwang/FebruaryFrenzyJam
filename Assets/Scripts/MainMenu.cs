@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         }
         // actually makes the game smoother because
         // garbage collection happens later :)
-        // TODO: Implement an object pool for all the instantiate/destroy stuff
+        // RESEARCH: Implement an object pool for all the instantiate/destroy stuff
         Application.targetFrameRate = 144;
     }
 

@@ -3,18 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Be sure to attach this to the object you want to be the player
+/// </summary>
 public class Player : MonoBehaviour
 {
     public enum PowerUp{FIRE_RATE, DODGE, MORE_BULLETS, BEHIND_SHOT};
+    public int damage = 10;
     public float maxSpeed = 10f;
-    // public float acceleration = 10f;
     public float rotationFactor = 15f;
+
     public float fireRate = 1f;
-    // public int health = 10;
-    public int damage = 1;
     public float projectileSpeed = 20f;
     public GameObject p;
-    public float dodgeRange = 20f;
+    
+    public float dodgeRange = 20f; // TODO: Move this value to the powerup, probably
+    
     private Dictionary<PowerUp, Effect> powUpDict;
     private float fireTimer = 1f;
     private bool alive = true;
@@ -45,18 +49,22 @@ public class Player : MonoBehaviour
         #else
         StartCoroutine(Shoot());
         #endif
+        // I don't why this doesn't work
+        /*
         foreach (AudioClip clip in sounds) {
             bool fail = clip.LoadAudioData();
             if (fail) {
                 Debug.LogWarning($"Failed to load Audio clip: {clip}");
             }
         }
+        */
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        // controlled via axes
         float xMove = Input.GetAxis("MoveHorizontal");
         float yMove = Input.GetAxis("MoveVertical");
         float xShoot = Input.GetAxis("ShootHorizontal");
@@ -75,11 +83,19 @@ public class Player : MonoBehaviour
             //float newAngle = -Mathf.Atan2(xShoot, yShoot) * 180/Mathf.PI;
             //newAngle = Mathf.Lerp(rb.rotation, newAngle, Time.deltaTime * rotationFactor);
             rb.rotation += newAngle * Time.deltaTime; 
-            // don't interpolate
+            // : don't interpolate
         }
 
     }
 
+    /// <summary>
+    /// To simplify changing the states of powers
+    /// Also allows us to easily make them inactive too.
+    /// Or expand functionality, y'know, just in case.
+    /// It might be a bit overengineered for a solution...
+    /// </summary>
+    /// <param name="pow"></param>
+    /// <param name="newEff"></param>
     public void updatePowers(PowerUp pow, Effect newEff) {
         powUpDict[pow] = newEff;
         switch(pow) {
@@ -97,7 +113,11 @@ public class Player : MonoBehaviour
     }
 
     
-    
+    /// <summary>
+    /// The player's shoot method! Always shooting.
+    /// Changes depending on fire rate and what powers are active
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Shoot() {
         int bulletCount = 0;
         while(alive) {
@@ -142,7 +162,7 @@ public class Player : MonoBehaviour
         }
     }
     
-
+    // TODO: Contemplate whether the Projectile script should have this or not.
     private void spawnProjectile(GameObject pGameObject, Vector3 position, Quaternion rot, Projectile.Behavior PB) {
         Instantiate(pGameObject, position, rot);
         Projectile projectile = pGameObject.GetComponent<Projectile>();
@@ -154,6 +174,10 @@ public class Player : MonoBehaviour
         audioSaus.Play(0);
     }
 
+    /// <summary>
+    /// Because the player dies in one hit.
+    /// Handles whether the player dodges as well.
+    /// </summary>
     public void die() {
         if (powUpDict[PowerUp.DODGE].active) {
             updatePowers(PowerUp.DODGE, new Effect(false, 0));
@@ -179,10 +203,15 @@ public class Player : MonoBehaviour
 
 }
 
+/// <summary>
+/// In hindsight, maybe I didn't need this.
+/// </summary>
 [System.Serializable]
 public struct Effect {
+        // REMINDER: I wanted to make this work with object types, couldn't figure it out
         public bool active;
-        public float magnitude;
+        public float magnitude; 
+        
         // public Type t;
 
         public Effect(bool status, float value) {

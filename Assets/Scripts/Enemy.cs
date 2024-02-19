@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Make a prefab and place this on that
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     private const int B_PLAYER = 0, B_ALLIES = 1, B_RANDOM = 2;
     public int health = 10;
+
     public float speed = 10f;
     public float speedLimit = 100f;
+    public float turnFactor = 5f;
+
+    public int damage = 1; // maybe this will be relevant
     public float fireRate = 1f;
-    private float fireTimer = 1f;
-    public int damage = 1;
     public float projectileSpeed = 20f;
+
+    private float fireTimer = 1f;
     public float behaviorTimer = 5f;
     public float moveTimer = 0.5f; 
-    public float turnFactor = 5f;
     public float dropRate = 0.2f;
     public GameObject p;
+
     [SerializeField] private GameObject powUpPrefab;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private AudioClip clip;
+
     private int behaviorState;
     private Transform target;
     private Rigidbody2D rb;
@@ -62,10 +70,13 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void OnDestroy() {
-        GameManager.instance.enemyCount--;    
-    }
 
+    /// <summary>
+    /// Enemies have health, but they are meant to die in one hit.
+    /// but I realized that a bit late.
+    /// Still works.
+    /// </summary>
+    /// <param name="damage"></param>
     public void takeDamage(int damage) {
         health -= damage;
 
@@ -75,19 +86,29 @@ public class Enemy : MonoBehaviour
                 PowerUp.SpawnPowerUp(transform.position);
             }
             AudioSource.PlayClipAtPoint(clip, transform.position);
+            GameManager.instance.enemyCount--;
             Destroy(gameObject);
         }
     }
 
+    
+    /// <summary>
+    /// To make the enemy point at the player, though maybe this should be changed
+    /// baseline for staring at something is transform.up = transform.up, targetPos - transform.position
+    /// </summary>
+    /// <param name="targetPos"></param>
     private void LookAt(Vector3 targetPos) {
+        // REMINDER: quick look at: transform.up = transform.up, targetPos - transform.position
         transform.up = Vector2.Lerp(transform.up, targetPos - transform.position, Time.deltaTime * turnFactor);
     }
 
     
-
+    /// <summary>
+    /// Randomly determine a behavior for the enemy
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RandBehavior() {
         while(true) {  
-            
             int rand = Random.Range(B_PLAYER, (B_RANDOM + 1));
             behaviorState = rand;
             Debug.Log("I am now tracking: " + rand);
@@ -104,12 +125,18 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Always move towards the object's up vector.
+    /// Speed should be regarded as a "step" per move
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Move() {
         while(true) {
             Vector2 forceVector;
             switch(behaviorState) {
                 case B_RANDOM:
-                    forceVector = transform.up * Random.Range(0f, speed*0.5f);
+                    // move randomly forward
+                    forceVector = transform.up * Random.Range(0f, speed*0.5f);                
                     break;  
                 default:
                     forceVector= transform.up * speed;
@@ -122,6 +149,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shoot coroutine.
+    /// Has less to care about than player
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Shoot() {
         while(true) {
             GameObject pGameObject = Instantiate(p, transform.position, transform.rotation);

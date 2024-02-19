@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Projectile : MonoBehaviour
 {
-    public enum Origin{PLAYER, ENEMY, VOID};
+    public enum Origin{PLAYER, ENEMY, VOID}; // Void was added, incase we wanted rogue projectiles
     public enum Behavior{DEFAULT, HOMING};
     public float speed = 20;
     public int damage = 1;
@@ -26,7 +26,10 @@ public class Projectile : MonoBehaviour
     {
         spiRend.sprite = sprites[(int) origin];
         rb.velocity = transform.up * speed;
-        StartCoroutine(Decay(decayTimer));
+        if (decayTimer > 0) { // this means we can disable the decay from happening
+            StartCoroutine(Decay(decayTimer));
+        }
+        
     }
 
     // Update is called once per frame

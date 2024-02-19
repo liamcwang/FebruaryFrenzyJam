@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Le boss, be sure to place an object with this script on the map
+/// Special to the boss are the timers used to decide when it should be
+/// active
+/// </summary>
 public class Boss : MonoBehaviour
 {
-    
+    public int health = 100;
+    public int defense = 10;
+
     public float speed = 10f;
     public float minSpeed = 5f;
     public float maxSpeed = 100f;
-    public int health = 100;
-    public int defense = 10;
-    public float moveTimer = 0.5f; 
     public float turnFactor = 5f;
+
+    public float moveTimer = 0.5f; 
     public float spawnTimer = 120f;
     public float scanTimer = 5f;
-    public int screamFrequency = 10;
+    public int screamFrequency = 10; // as in, the number of moves it takes to scream
+
     private bool asleep = true;
     private Rigidbody2D rb;
     private Transform target;
@@ -48,10 +55,20 @@ public class Boss : MonoBehaviour
         LookAt(target.position);
     }
 
+    /// <summary>
+    /// To make the boss point at the player, though maybe this should be changed
+    /// baseline for staring at something is transform.up = transform.up, targetPos - transform.position
+    /// </summary>
+    /// <param name="targetPos"></param>
     private void LookAt(Vector3 targetPos) {
         transform.up = Vector2.Lerp(transform.up, targetPos - transform.position, Time.deltaTime * turnFactor);
     }
 
+    /// <summary>
+    /// Special to the boss is the defense value, which reduces incoming damage
+    /// Thing is, doesn't it affect the effective health of the boss the same way as health anyway?
+    /// </summary>
+    /// <param name="damage"></param>
     public void takeDamage(int damage) {
         int diff = damage - defense;
 
@@ -66,6 +83,11 @@ public class Boss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reduce the value of the boss's stats, based on the effect given
+    /// </summary>
+    /// <param name="effect"></param>
+    /// <param name="value"></param>
     public void debuff(Tower.Debuff effect, float value) {
         Debug.Log("Alas, I am debuffed! " + effect + ": " + value);
         switch(effect) {
@@ -92,6 +114,11 @@ public class Boss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// While the boss timer is running, this will play the scanning sound
+    /// We play it on the playercam, because that's where the listener is
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Scanning(){
         while (asleep) {
             yield return new WaitForSeconds(5f);
@@ -102,6 +129,11 @@ public class Boss : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Always move towards the object's up vector.
+    /// Speed should be regarded as a "step" per move
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Move() {
         int moveCount = 0;
         while(true) {
@@ -122,6 +154,10 @@ public class Boss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Begins when the boss is loaded
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator BossTimer() {
         yield return new WaitForSeconds(spawnTimer);
         asleep = false;

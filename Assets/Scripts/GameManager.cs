@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 /// And holds responsiblity for hooking all relevant objects together for important functions.
 /// </summary>
 public class GameManager {
+    // REMINDER: Working static instances :D
     private static GameManager singletonInstance;
     public enum GameState{START_MENU, GAME, VICTORY, DEFEAT, RESTART}
     public int enemyCount;
