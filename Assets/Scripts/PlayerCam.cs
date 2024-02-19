@@ -35,6 +35,12 @@ public class PlayerCam : MonoBehaviour
         Vector3 bottomLeft = thisCamera.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         width = topRight.x - bottomLeft.x;
         height = topRight.y - bottomLeft.y;
+        foreach (AudioClip clip in sounds) {
+            bool fail = clip.LoadAudioData();
+            if (fail) {
+                Debug.LogWarning($"Failed to load Audio clip: {clip}");
+            }
+        }
        
     }
 

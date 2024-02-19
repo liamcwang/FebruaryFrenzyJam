@@ -45,7 +45,12 @@ public class Player : MonoBehaviour
         #else
         StartCoroutine(Shoot());
         #endif
-        
+        foreach (AudioClip clip in sounds) {
+            bool fail = clip.LoadAudioData();
+            if (fail) {
+                Debug.LogWarning($"Failed to load Audio clip: {clip}");
+            }
+        }
         
     }
 

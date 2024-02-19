@@ -53,7 +53,12 @@ public class Boss : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
-        health -= damage - defense;
+        int diff = damage - defense;
+
+        if (diff > 0) {
+            health -= diff;
+        }
+        
 
         if (health <= 0) {
             Destroy(gameObject);
@@ -98,8 +103,9 @@ public class Boss : MonoBehaviour
     }
 
     private IEnumerator Move() {
-        int moveCount = 1;
+        int moveCount = 0;
         while(true) {
+            moveCount++;
             moveCount = moveCount % screamFrequency;
             if (moveCount == 0) {
                 audioSaus.Play(0);

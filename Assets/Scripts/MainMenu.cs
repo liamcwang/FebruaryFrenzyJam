@@ -15,7 +15,10 @@ public class MainMenu : MonoBehaviour
         foreach (UIObject UIObj in UIElements) {
             UIRef[UIObj.name] = UIObj.gameObject;
         }
-        
+        // actually makes the game smoother because
+        // garbage collection happens later :)
+        // TODO: Implement an object pool for all the instantiate/destroy stuff
+        Application.targetFrameRate = 144;
     }
 
     void Start() {
