@@ -101,10 +101,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc80a0a66c819cb41b547cbe1efd3064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   maxSpeed: 20
   rotationFactor: 180
   fireRate: 2
   damage: 1
+=======
+  maxSpeed: 10
+  rotationFactor: 270
+  fireRate: 3
+  damage: 10
+>>>>>>> Stashed changes
   projectileSpeed: 20
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   dodgeRange: 20

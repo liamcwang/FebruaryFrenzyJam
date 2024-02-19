@@ -18,6 +18,7 @@ public class GameManager {
     private GameManager(GameState setGameState) {
         enemyCount = 0;
         gameState = setGameState;
+        
 
         // initialize your game manager here. Do not reference to GameObjects here (i.e. GameObject.Find etc.)
         // because the game manager will be created before the objects
@@ -34,6 +35,7 @@ public class GameManager {
         }
     }
 
+
     // Add your game mananger members here
     public static void Pause(bool paused) {
         if (paused) Time.timeScale = 0;
@@ -44,15 +46,18 @@ public class GameManager {
         Time.timeScale = 1;
     }
 
-
+    #if UNITY_EDITOR
     [MenuItem("GameManager/MainMenu")]
-    public static void MainMenu() {
+    #endif
+    public static void returnToMaMe() {
         singletonInstance = new GameManager(GameState.START_MENU);
         SceneManager.LoadScene("testing");
         Time.timeScale = 0;
     }
 
+    #if UNITY_EDITOR
     [MenuItem("GameManager/RestartGame")]
+    #endif
     public static void RestartGame(){
         Debug.Log("Restarting...");
         singletonInstance = new GameManager(GameState.RESTART);
@@ -68,7 +73,9 @@ public class GameManager {
 
     }
 
+    #if UNITY_EDITOR
     [MenuItem("GameManager/EnemyCount")]
+    #endif
     static void EnemyCount()
     {
         Debug.Log(instance.enemyCount);

@@ -48,10 +48,12 @@ public class PowerUp : MonoBehaviour
         }
     }
 
+    #if UNITY_EDITOR
     [MenuItem("GameFunctions/SpawnRandPowerUp")]
     public static void SpawnRandPowerUp() {
         SpawnPowerUp(Vector3.zero);
     }
+    #endif
 
 
     public static void SpawnPowerUp(Vector3 location) {

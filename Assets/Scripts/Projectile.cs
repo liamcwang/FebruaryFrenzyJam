@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     public Origin origin = Origin.VOID;
     public Behavior behaviorState;
     public LayerMask ignoreLayer;
+    public float decayTimer = 5f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spiRend;
     [SerializeField] private Sprite[] sprites;
@@ -19,6 +20,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.up * speed;
+        StartCoroutine(Decay(decayTimer));
     }
 
     // Update is called once per frame
@@ -28,6 +30,14 @@ public class Projectile : MonoBehaviour
         /*if (behaviorState == Behavior.HOMING) {
             
         }*/
+        
+    }
+
+    
+    
+    private IEnumerator Decay(float f) {
+        yield return new WaitForSeconds(f);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

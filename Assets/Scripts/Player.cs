@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
     }
 
     
+    
     private IEnumerator Shoot() {
         int bulletCount = 0;
         while(alive) {
