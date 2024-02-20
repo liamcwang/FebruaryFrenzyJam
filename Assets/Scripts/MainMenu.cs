@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Should be renamed to some kind of manager thing, because it actually
+/// has more responsibilities than just the menus.
+/// </summary>
 public class MainMenu : MonoBehaviour
 {
     public enum ScreenName {START, DEFEAT, VICTORY, CREDITS}; 
     [SerializeField] private UIObject[] UIElements;
     private Dictionary<ScreenName, GameObject> UIRef;
-
+    // TODO: Document Main Menu
     void Awake() {
         GameManager.instance.mainMenu = this;
         UIRef = new Dictionary<ScreenName, GameObject>();
         foreach (UIObject UIObj in UIElements) {
             UIRef[UIObj.name] = UIObj.gameObject;
         }
-        
+        // actually makes the game smoother because
+        // garbage collection happens later :)
+        // but it's a bad solution, so
+        // RESEARCH: Implement an object pool for all the instantiate/destroy stuff
+        Application.targetFrameRate = 144;
     }
 
     void Start() {
@@ -79,7 +87,7 @@ public class MainMenu : MonoBehaviour
     }
 
     private IEnumerator ExitSequence() {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Application.Quit();
     }
 }

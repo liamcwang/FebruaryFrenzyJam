@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2196253532555280260}
-  - component: {fileID: 5119127537775380305}
   - component: {fileID: 6553749777271461687}
+  - component: {fileID: 5119127537775380305}
   - component: {fileID: 7804434664626374189}
   - component: {fileID: 7287666361011184709}
   - component: {fileID: 5024950911358253490}
@@ -37,6 +37,33 @@ Transform:
   - {fileID: 5373409014784591605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6553749777271461687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754952851212602738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc80a0a66c819cb41b547cbe1efd3064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  maxSpeed: 10
+  rotationFactor: 270
+  fireRate: 3
+  projectileSpeed: 20
+  p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
+  dodgeRange: 20
+  canShoot: 1
+  canDie: 0
+  sounds:
+  - {fileID: 8300000, guid: bcc87d9adda84474590853f48f4ec37f, type: 3}
+  - {fileID: 8300000, guid: 90a3382711941c845bb46795bf1d07c2, type: 3}
+  - {fileID: 8300000, guid: 9be149300a5953d44bd66dc383d5f5b0, type: 3}
+  - {fileID: 8300000, guid: 83cf80bb2f84a3b49ad71c6796815d41, type: 3}
+  audioSaus: {fileID: 0}
 --- !u!212 &5119127537775380305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,33 +116,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6553749777271461687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 754952851212602738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc80a0a66c819cb41b547cbe1efd3064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 10
-  rotationFactor: 270
-  fireRate: 3
-  damage: 1
-  projectileSpeed: 20
-  p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
-  dodgeRange: 20
-  canShoot: 1
-  canDie: 0
-  sounds:
-  - {fileID: 8300000, guid: bcc87d9adda84474590853f48f4ec37f, type: 3}
-  - {fileID: 8300000, guid: 90a3382711941c845bb46795bf1d07c2, type: 3}
-  - {fileID: 8300000, guid: 9be149300a5953d44bd66dc383d5f5b0, type: 3}
-  - {fileID: 8300000, guid: 83cf80bb2f84a3b49ad71c6796815d41, type: 3}
-  audioSaus: {fileID: 0}
 --- !u!50 &7804434664626374189
 Rigidbody2D:
   serializedVersion: 4

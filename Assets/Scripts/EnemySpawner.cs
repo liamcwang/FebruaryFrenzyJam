@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Spawns enemy on itself
+/// Make a prefab for this
+/// </summary>
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
@@ -13,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
+    // TODO: Contemplate making a static public method for spawning enemies anywhere
     private IEnumerator SpawnEnemy() {
         while(true) {
             if (enemy == null) {

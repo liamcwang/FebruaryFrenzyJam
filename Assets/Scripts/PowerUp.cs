@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// Powerup to give player extra functionality
+/// </summary>
 public class PowerUp : MonoBehaviour
 {
     public Player.PowerUp type;
@@ -50,12 +53,20 @@ public class PowerUp : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// To add power ups for testing
+    /// </summary>
+    #if UNITY_EDITOR
     [MenuItem("GameFunctions/SpawnRandPowerUp")]
     public static void SpawnRandPowerUp() {
         SpawnPowerUp(Vector3.zero);
     }
+    #endif
 
-
+    /// <summary>
+    /// Static method to spawn powerups anywhere, useful
+    /// </summary>
+    /// <param name="location"></param>
     public static void SpawnPowerUp(Vector3 location) {
         if (PowFab == null) {
             PowFab = Resources.Load<GameObject>("PowerUp");

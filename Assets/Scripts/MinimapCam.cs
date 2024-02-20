@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Give this to main camera
+/// Manages the play area that the game takes place in
+/// Also acts as a minimap for the important objects in the game
+/// </summary>
 public class MinimapCam : MonoBehaviour
 {
-    // seamless world problem
+    // TODO: seamless world problem
+    // RESEARCH: Squashing camera via projection matrix
     public BoxCollider2D boundary;
     [HideInInspector] public Camera thisCamera;
     public float width;
@@ -32,14 +38,20 @@ public class MinimapCam : MonoBehaviour
         width = topRight.x - bottomLeft.x;
         height = topRight.y - bottomLeft.y;
         
+        // these are used when deciding how to wrap the player across the screen
         xWrap = PlayerCam.instance.width / 2;
         yWrap = PlayerCam.instance.height / 2;
 
         boundary.size = new Vector2(width, height);
 
         PlaceTowers();
+        // all the towers are placed at the start of the game
     }
 
+    /// <summary>
+    /// Method to randomly spawn towers, attached to this camera
+    /// because the camera also sets the boundaries of the play area.
+    /// </summary>
     public void PlaceTowers() {
         for (int i = 0; i < 15; i++) {
             bool invalidPlace = true;
@@ -86,14 +98,14 @@ public class MinimapCam : MonoBehaviour
 
             Vector3 pos = Camera.main.WorldToViewportPoint(oTransform.position);
             
-
-            if(pos.x < 0f) {
+            // all of this is quite unreliable at times :(
+            if(pos.x < 0.01f) {
                 xAxis = topRight.x + xWrap;
             }
             if(pos.x > 0.99f){
                 xAxis = bottomLeft.x - xWrap;
             } 
-            if(pos.y < 0f){
+            if(pos.y < 0.01f){
                 yAxis = topRight.y + yWrap;
             } 
             if(pos.y  > 0.99f){

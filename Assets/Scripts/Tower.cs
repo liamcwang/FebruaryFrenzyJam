@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// These towers will debuff the boss when destroyed
+/// </summary>
 public class Tower : MonoBehaviour
 {
     public enum Debuff{HP, DEF, SPEED};
@@ -27,11 +30,20 @@ public class Tower : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Set what debuff this tower is
+    /// </summary>
+    /// <param name="mode"></param>
     public void setMode(int mode) {
+        // REMINDER: Casting ints to enums, very useful
         effect = (Debuff) mode;
         magnitude = debuffValues[mode];
     }
 
+    /// <summary>
+    /// No defense on this so, causes no problems when taking damage
+    /// </summary>
+    /// <param name="damage"></param>
     public void takeDamage(float damage) {
         health -= damage;
 
