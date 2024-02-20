@@ -220,7 +220,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f6af10576b2194bb2f68c0940883df, type: 3}
---- !u!1001 &486628237
+--- !u!1001 &210056650
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -329,6 +329,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4847232158474974759, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: sounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4847232158474974759, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: sounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa0a51a808b813a448a5817e1fd5a4da, type: 3}
+    - target: {fileID: 4847232158474974759, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: sounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: db69edd928adc784d9685433bee40761, type: 3}
+    - target: {fileID: 4847232158474974759, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: sounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 844f901777cbd544ea2def6e019fc81e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5321,9 +5337,9 @@ Tilemap:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 486628237}
+  - {fileID: 910669454}
   - {fileID: 623268347}
   - {fileID: 1156463510}
-  - {fileID: 910669454}
-  - {fileID: 124653186}
+  - {fileID: 210056650}
   - {fileID: 851746251}
+  - {fileID: 124653186}

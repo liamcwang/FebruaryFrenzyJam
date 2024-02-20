@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 752572720057151431}
-  - component: {fileID: 3472808299580411892}
   - component: {fileID: 3032418155000322924}
+  - component: {fileID: 3472808299580411892}
   - component: {fileID: 7336496725535921671}
   - component: {fileID: 7248060540715978913}
   - component: {fileID: 8066784500067412330}
@@ -38,6 +38,31 @@ Transform:
   - {fileID: 410826009156069885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3032418155000322924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594135223730586952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6456d8e32a03d044b826332fc62f4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1000
+  defense: 5
+  speed: 30
+  minSpeed: 20
+  maxSpeed: 40
+  turnFactor: 7
+  moveTimer: 0.5
+  spawnTimer: 20
+  scanTimer: 5
+  screamFrequency: 5
+  clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
+  audioSaus: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!212 &3472808299580411892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,31 +115,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3032418155000322924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594135223730586952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6456d8e32a03d044b826332fc62f4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
-  minSpeed: 20
-  maxSpeed: 40
-  health: 100
-  defense: 10
-  moveTimer: 0.5
-  turnFactor: 7
-  spawnTimer: 20
-  scanTimer: 5
-  screamFrequency: 10
-  clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
-  audioSaus: {fileID: 0}
-  anim: {fileID: 0}
 --- !u!82 &7336496725535921671
 AudioSource:
   m_ObjectHideFlags: 0

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5845949486985264265}
-  - component: {fileID: 1117683442962005463}
   - component: {fileID: 4288381448849084857}
+  - component: {fileID: 1117683442962005463}
   - component: {fileID: 7017771526961074363}
   - component: {fileID: -1840177177262737330}
   m_Layer: 0
@@ -35,6 +35,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4288381448849084857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2980965563536737882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3f4f1a523f98f2498fb3f80eff7b47d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  fireRate: 2
+  moreBullets: 4
+  sprites:
+  - {fileID: -39855834, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  - {fileID: 1011708463, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  - {fileID: -1359107930, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  - {fileID: 1124270405, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  - {fileID: -1214077056, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
+  clip: {fileID: 8300000, guid: f5952b9c23649e548b04e16f0937a977, type: 3}
 --- !u!212 &1117683442962005463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,28 +109,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4288381448849084857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2980965563536737882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3f4f1a523f98f2498fb3f80eff7b47d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  fireRate: 2
-  moreBullets: 4
-  sprites:
-  - {fileID: -39855834, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  - {fileID: 1011708463, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  - {fileID: -1359107930, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  - {fileID: 1124270405, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  - {fileID: -1214077056, guid: e02576b9e24961a4686b97bc4664ff46, type: 3}
-  clip: {fileID: 8300000, guid: f5952b9c23649e548b04e16f0937a977, type: 3}
 --- !u!61 &7017771526961074363
 BoxCollider2D:
   m_ObjectHideFlags: 0

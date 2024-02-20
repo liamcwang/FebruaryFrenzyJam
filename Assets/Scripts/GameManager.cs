@@ -76,8 +76,7 @@ public class GameManager {
     #endif
     public static void returnToMaMe() {
         singletonInstance = new GameManager(GameState.START_MENU);
-        var activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.name);
+        SceneManager.LoadScene(0);
     }
 
 
@@ -92,8 +91,7 @@ public class GameManager {
     public static void RestartGame(){
         Debug.Log("Restarting...");
         singletonInstance = new GameManager(GameState.RESTART);
-        var activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.name);
+        SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
 

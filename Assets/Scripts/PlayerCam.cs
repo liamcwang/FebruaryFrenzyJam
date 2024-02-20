@@ -8,10 +8,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerCam : MonoBehaviour
 {
-    public const int START_JINGLE= 0, ANTIVIRUS= 1, SCANNING = 2, BOSS_THEME = 3, VICTORY = 4;
+    public const int START_JINGLE= 0, ANTIVIRUS= 1, SCANNING = 2, VIRUS_DETECTED = 3, BOSS_THEME = 4, VICTORY = 5;
     const float Z_POS = -10;
     public static PlayerCam instance;
     public float trackingFactor = 1f;
+    [SerializeField] private float yTrackOffset; 
     private Player player;
     public float width;
     public float height;
@@ -49,6 +50,31 @@ public class PlayerCam : MonoBehaviour
         }*/
        
     }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        // REMINDER: Fast distance calculation
+        playerPos = new Vector3(player.transform.position.x, player.transform.position.y + yTrackOffset, Z_POS);
+        currentPos = transform.position;
+        heading = new Vector2();
+
+        heading.x = playerPos.x - currentPos.x;
+        heading.y = playerPos.y - currentPos.y;
+
+        float distanceSquared = heading.x * heading.x + heading.y * heading.y;
+        float distance = Mathf.Sqrt(distanceSquared); // yes, this distance calculation is faster, apparently
+        if (distance < 100f) {
+            transform.position = Vector3.Lerp(transform.position, playerPos, trackingFactor * Time.deltaTime);
+        } else{
+            Vector3 newPos = new Vector3(playerPos.x - previousOffset.x, playerPos.y - previousOffset.y, Z_POS);
+            transform.position = newPos;
+        }
+
+        previousOffset = new Vector2(heading.x, heading.y);
+
+        
+    }
 
     /// <summary>
     /// Plays sound with the audio source
@@ -85,7 +111,8 @@ public class PlayerCam : MonoBehaviour
     /// Sound sequence for the boss
     /// </summary>
     public void BossTime() {
-        PlaySound(BOSS_THEME);
+        PlaySound(VIRUS_DETECTED);
+        StartCoroutine(QueueSound(audioSaus.clip.length, BOSS_THEME));
         audioSaus.loop = true;
     }
 
@@ -97,28 +124,4 @@ public class PlayerCam : MonoBehaviour
         audioSaus.loop = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // REMINDER: Fast distance calculation
-        playerPos = new Vector3(player.transform.position.x, player.transform.position.y, Z_POS);
-        currentPos = transform.position;
-        heading = new Vector2();
-
-        heading.x = playerPos.x - currentPos.x;
-        heading.y = playerPos.y - currentPos.y;
-
-        float distanceSquared = heading.x * heading.x + heading.y * heading.y;
-        float distance = Mathf.Sqrt(distanceSquared); // yes, this distance calculation is faster, apparently
-        if (distance < 100f) {
-            transform.position = Vector3.Lerp(transform.position, playerPos, trackingFactor * Time.deltaTime);
-        } else{
-            Vector3 newPos = new Vector3(playerPos.x - previousOffset.x, playerPos.y - previousOffset.y, Z_POS);
-            transform.position = newPos;
-        }
-
-        previousOffset = new Vector2(heading.x, heading.y);
-
-        
-    }
 }

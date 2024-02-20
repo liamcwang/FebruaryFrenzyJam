@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178958262307318952}
+  - component: {fileID: 4847232158474974759}
   - component: {fileID: 4860771342852155239}
   - component: {fileID: 2140173919271411813}
-  - component: {fileID: 4847232158474974759}
   - component: {fileID: -911094950456287940}
   m_Layer: 0
   m_Name: PlayerCamera
@@ -35,6 +35,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4847232158474974759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597833948963497348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df7f0a80ba9df9b41bdefd35ef033fcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackingFactor: 5
+  yTrackOffset: 0.8
+  width: 0
+  height: 0
+  thisCamera: {fileID: 0}
+  sounds:
+  - {fileID: 8300000, guid: 59417b7474f491d4685ecf887024e88f, type: 3}
+  - {fileID: 8300000, guid: 931dcdc69ad9d53479468a04e01717c7, type: 3}
+  - {fileID: 8300000, guid: 67ab8570401636f448380e1bc17423e0, type: 3}
+  - {fileID: 8300000, guid: db69edd928adc784d9685433bee40761, type: 3}
+  - {fileID: 8300000, guid: 844f901777cbd544ea2def6e019fc81e, type: 3}
+  audioSaus: {fileID: -911094950456287940}
 --- !u!20 &4860771342852155239
 Camera:
   m_ObjectHideFlags: 0
@@ -70,7 +94,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -94,29 +118,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2597833948963497348}
   m_Enabled: 1
---- !u!114 &4847232158474974759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597833948963497348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df7f0a80ba9df9b41bdefd35ef033fcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trackingFactor: 5
-  width: 0
-  height: 0
-  thisCamera: {fileID: 0}
-  sounds:
-  - {fileID: 8300000, guid: 59417b7474f491d4685ecf887024e88f, type: 3}
-  - {fileID: 8300000, guid: 931dcdc69ad9d53479468a04e01717c7, type: 3}
-  - {fileID: 8300000, guid: 67ab8570401636f448380e1bc17423e0, type: 3}
-  - {fileID: 8300000, guid: db69edd928adc784d9685433bee40761, type: 3}
-  - {fileID: 8300000, guid: 844f901777cbd544ea2def6e019fc81e, type: 3}
-  audioSaus: {fileID: -911094950456287940}
 --- !u!82 &-911094950456287940
 AudioSource:
   m_ObjectHideFlags: 0

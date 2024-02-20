@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour
     }
 
     private IEnumerator ExitSequence() {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Application.Quit();
     }
 }

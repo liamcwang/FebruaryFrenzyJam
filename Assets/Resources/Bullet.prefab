@@ -48,12 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 1
+  damage: 10
   origin: 0
   behaviorState: 0
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 64
+  decayTimer: 0
   rb: {fileID: 1677743630980479207}
   spiRend: {fileID: 8329342381210466559}
   sprites:

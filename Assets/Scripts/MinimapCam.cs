@@ -10,6 +10,7 @@ using UnityEngine;
 public class MinimapCam : MonoBehaviour
 {
     // TODO: seamless world problem
+    // RESEARCH: Squashing camera via projection matrix
     public BoxCollider2D boundary;
     [HideInInspector] public Camera thisCamera;
     public float width;
