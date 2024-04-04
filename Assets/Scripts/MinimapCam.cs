@@ -100,16 +100,16 @@ public class MinimapCam : MonoBehaviour
             
             // all of this is quite unreliable at times :(
             if(pos.x < 0.01f) {
-                xAxis = topRight.x + xWrap;
+                xAxis = topRight.x - xWrap;
             }
             if(pos.x > 0.99f){
-                xAxis = bottomLeft.x - xWrap;
+                xAxis = bottomLeft.x + xWrap;
             } 
             if(pos.y < 0.01f){
-                yAxis = topRight.y + yWrap;
+                yAxis = topRight.y - yWrap;
             } 
             if(pos.y  > 0.99f){
-                yAxis = bottomLeft.y - yWrap;
+                yAxis = bottomLeft.y + yWrap;
             }
             
             oTransform.position = new Vector3(xAxis,yAxis,zAxis);

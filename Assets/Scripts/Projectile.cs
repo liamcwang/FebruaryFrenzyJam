@@ -61,19 +61,19 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hit!");
         if (origin != Origin.ENEMY) {
-            GameObject gabe = other.gameObject;
+            GameObject gObj = other.gameObject;
             // lotta room for improvement here
             // Could make a for loop for every type of damageable object
-            if (gabe.GetComponent<Enemy>() != null) {
-                gabe.GetComponent<Enemy>().takeDamage(damage);
+            if (gObj.GetComponent<Enemy>() != null) {
+                gObj.GetComponent<Enemy>().takeDamage(damage);
                 Destroy(gameObject);
             }
-            if (gabe.GetComponent<Tower>() != null ) {
-                gabe.GetComponent<Tower>().takeDamage(damage);
+            if (gObj.GetComponent<Tower>() != null ) {
+                gObj.GetComponent<Tower>().takeDamage(damage);
                 Destroy(gameObject);
             }
-            if (gabe.GetComponent<Boss>() != null) {
-                gabe.GetComponent<Boss>().takeDamage(damage);
+            if (gObj.GetComponent<Boss>() != null) {
+                gObj.GetComponent<Boss>().takeDamage(damage);
                 Destroy(gameObject);
             }
         }

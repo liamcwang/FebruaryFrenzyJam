@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
-    private const int B_PLAYER = 0, B_ALLIES = 1, B_RANDOM = 2;
+    private const int B_PLAYER = 0, B_RANDOM = 1;
     public int health = 10;
 
     public float speed = 10f;
@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
     public float dropRate = 0.2f;
     public GameObject p;
 
-    [SerializeField] private GameObject powUpPrefab;
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private AudioClip clip;
 
@@ -111,10 +110,8 @@ public class Enemy : MonoBehaviour
         while(true) {  
             int rand = Random.Range(B_PLAYER, (B_RANDOM + 1));
             behaviorState = rand;
-            Debug.Log("I am now tracking: " + rand);
+            // Debug.Log("I am now tracking: " + rand);
             switch(rand) {
-                case B_ALLIES:
-                    break;
                 default:
                     target = GameManager.instance.player.transform;
                     break;
