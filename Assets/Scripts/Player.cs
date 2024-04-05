@@ -179,7 +179,7 @@ public class Player : MonoBehaviour
     /// Handles whether the player dodges as well.
     /// </summary>
     public void die() {
-        if (GameManager.instance.GameState == GameManager.GameState.VICTORY) return;
+        if (GameManager.instance.gameState == GameManager.GameState.VICTORY) return;
         if (powUpDict[PowerUp.DODGE].active) {
             updatePowers(PowerUp.DODGE, new Effect(false, 0));
             Vector2 randVect = UnityEngine.Random.insideUnitCircle;

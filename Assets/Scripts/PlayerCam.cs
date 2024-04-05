@@ -28,6 +28,8 @@ public class PlayerCam : MonoBehaviour
 
     void Awake() {
         instance = this;
+        GameManager.instance.playerCam = this;
+
     }
 
     // Start is called before the first frame update
@@ -124,4 +126,13 @@ public class PlayerCam : MonoBehaviour
         audioSaus.loop = false;
     }
 
+    
+}
+
+public static class CameraEx
+{
+    public static bool IsObjectVisible(this UnityEngine.Camera @this, Renderer renderer)
+    {
+        return GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(@this), renderer.bounds);
+    }
 }

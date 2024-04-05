@@ -51,7 +51,7 @@ MonoBehaviour:
   effect: 0
   debuffValues:
   - 50
-  - 1
+  - 15
   - 5
   spiRend: {fileID: 3607854293582401096}
   sprites:

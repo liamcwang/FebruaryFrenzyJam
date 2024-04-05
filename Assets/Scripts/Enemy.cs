@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
+    //TODO: Make enemies only shoot when visible
     private const int B_PLAYER = 0, B_RANDOM = 1;
     public int health = 10;
 
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private Rigidbody2D rb;
     private SpriteRenderer spiRend;
+    bool isVisible;
     
     /* targets you, but has a hard time getting to you */
 
@@ -47,6 +49,7 @@ public class Enemy : MonoBehaviour
         GameManager.instance.enemyCount++;
         int randInt = Random.Range(0, sprites.Length);
         spiRend.sprite = sprites[randInt];
+        
 
     }
 
@@ -54,6 +57,8 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+        
+        isVisible = GameManager.instance.playerCam.thisCamera.IsObjectVisible(spiRend);
         switch(behaviorState) {
             case B_RANDOM:
                 Vector2 randVect = Random.insideUnitCircle;
@@ -153,11 +158,13 @@ public class Enemy : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Shoot() {
         while(true) {
-            GameObject pGameObject = Instantiate(p, transform.position, transform.rotation);
-            Projectile projectile = pGameObject.GetComponent<Projectile>();
-            projectile.damage = damage;
-            projectile.speed = projectileSpeed;
-            projectile.origin = Projectile.Origin.ENEMY;
+            if (isVisible) {
+                GameObject pGameObject = Instantiate(p, transform.position, transform.rotation);
+                Projectile projectile = pGameObject.GetComponent<Projectile>();
+                projectile.damage = damage;
+                projectile.speed = projectileSpeed;
+                projectile.origin = Projectile.Origin.ENEMY;
+            }
             yield return new WaitForSeconds(fireTimer);
         }
     }

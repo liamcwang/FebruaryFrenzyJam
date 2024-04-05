@@ -94,8 +94,8 @@ public class Boss : MonoBehaviour
             case Tower.Debuff.HP:
                 health -= (int)value;
                 break;
-            case Tower.Debuff.DEF:
-                defense -= (int)value;
+            case Tower.Debuff.TIMER:
+                spawnTimer += value;
                 break;
             case Tower.Debuff.SPEED:
                 speed -= value;
@@ -159,7 +159,11 @@ public class Boss : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     private IEnumerator BossTimer() {
-        yield return new WaitForSeconds(spawnTimer);
+        float currentTimer = 0;
+        while (currentTimer < spawnTimer) {
+            yield return new WaitForSeconds(1);
+            currentTimer += 1;
+        }
         asleep = false;
         PlayerCam.instance.BossTime();
         StartCoroutine(Move());

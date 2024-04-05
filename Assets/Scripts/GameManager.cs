@@ -19,6 +19,7 @@ public class GameManager {
     public GameState gameState {get; private set;}
     public Boss boss;
     public Player player;
+    public PlayerCam playerCam;
     public MinimapCam minimapCam;
     public MainMenu mainMenu;
 

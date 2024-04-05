@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class Tower : MonoBehaviour
 {
-    public enum Debuff{HP, DEF, SPEED};
+    public enum Debuff{HP, TIMER, SPEED};
     public float health = 10f;
     public Debuff effect;
     [SerializeField] private float[] debuffValues;
