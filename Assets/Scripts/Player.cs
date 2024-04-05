@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
             //float newAngle = -Mathf.Atan2(xShoot, yShoot) * 180/Mathf.PI;
             //newAngle = Mathf.Lerp(rb.rotation, newAngle, Time.deltaTime * rotationFactor);
             rb.rotation += newAngle * Time.deltaTime; 
-            // : don't interpolate
+            // REMEMBER: don't interpolate, it lags everything
         }
 
     }
@@ -179,6 +179,7 @@ public class Player : MonoBehaviour
     /// Handles whether the player dodges as well.
     /// </summary>
     public void die() {
+        if (GameManager.instance.GameState == GameManager.GameState.VICTORY) return;
         if (powUpDict[PowerUp.DODGE].active) {
             updatePowers(PowerUp.DODGE, new Effect(false, 0));
             Vector2 randVect = UnityEngine.Random.insideUnitCircle;
@@ -188,6 +189,7 @@ public class Player : MonoBehaviour
         } else {
             AudioSource.PlayClipAtPoint(sounds[3], transform.position);
             #if UNITY_EDITOR
+            Debug.Log("player would be ded");
             if (canDie) {
                 GameManager.Defeat();
                 Destroy(gameObject);
