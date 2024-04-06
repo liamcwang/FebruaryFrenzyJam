@@ -51,6 +51,7 @@ public class Tower : MonoBehaviour
             // looks safer to do it this way, rather than OnDestroy
             boss.debuff(effect, magnitude);
             AudioSource.PlayClipAtPoint(clip, transform.position);
+            GameManager.instance.mainMenu.UpdateBossValues(effect);
             Destroy(gameObject);
             
         }

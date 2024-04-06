@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 882331083577267326, guid: 13f6af10576b2194bb2f68c0940883df, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7800238164748609613, guid: 13f6af10576b2194bb2f68c0940883df, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -221,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8241697974002193857, guid: 13f6af10576b2194bb2f68c0940883df, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -363,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 844f901777cbd544ea2def6e019fc81e, type: 3}
     - target: {fileID: 4860771342852155239, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
       propertyPath: orthographic size
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4860771342852155239, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
       propertyPath: m_NormalizedViewPortRect.height

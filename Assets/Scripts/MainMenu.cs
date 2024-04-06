@@ -9,15 +9,19 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    public enum ScreenName {START, DEFEAT, VICTORY, CREDITS}; 
+    public enum ScreenName {START, DEFEAT, VICTORY, CREDITS, BOSS_VALUES}; 
     [SerializeField] private UIObject[] UIElements;
-    private Dictionary<ScreenName, GameObject> UIRef;
+    private Dictionary<ScreenName, List<GameObject>> UIRef;
     // TODO: Document Main Menu
     void Awake() {
         GameManager.instance.mainMenu = this;
-        UIRef = new Dictionary<ScreenName, GameObject>();
+        UIRef = new Dictionary<ScreenName, List<GameObject>>();
         foreach (UIObject UIObj in UIElements) {
-            UIRef[UIObj.name] = UIObj.gameObject;
+            if (UIRef.ContainsKey(UIObj.name)) {
+                UIRef[UIObj.name].Add(UIObj.gameObject);
+            } else {
+                UIRef[UIObj.name] = new List<GameObject>{UIObj.gameObject};
+            }
         }
         // actually makes the game smoother because
         // garbage collection happens later :)
@@ -47,12 +51,14 @@ public class MainMenu : MonoBehaviour
     }
 
     public void setScreen(ScreenName key, bool isActive) {
-        GameObject gObj = UIRef[key];
-        gObj.SetActive(isActive);
+        foreach (GameObject gObj in UIRef[key]) {
+            gObj.SetActive(isActive);
+        }
     }
 
     public void StartGame() {
         setScreen(ScreenName.START, false);
+        setScreen(ScreenName.BOSS_VALUES, true);
         GameManager.StartGame();
         PlayerCam.instance.startUp();
     }
@@ -72,6 +78,15 @@ public class MainMenu : MonoBehaviour
 
     public void Defeat() {
         StartCoroutine(DefeatSequence());
+    }
+
+    public void UpdateBossValues(Tower.Debuff debuff) {
+        foreach (GameObject gObj in UIRef[ScreenName.BOSS_VALUES]) {
+            UIBar bar= gObj.GetComponent<UIBar>();
+            if (bar.barType == debuff) {
+                bar.IncrementBar();
+            }
+        }
     }
 
     private IEnumerator DefeatSequence() {

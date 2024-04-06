@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534242998349950166}
   - component: {fileID: 3854195371048568288}
+  - component: {fileID: 2624850753061772986}
   - component: {fileID: 3607854293582401096}
   - component: {fileID: 4396131920338784726}
   m_Layer: 0
@@ -55,10 +56,32 @@ MonoBehaviour:
   - 5
   spiRend: {fileID: 3607854293582401096}
   sprites:
+  - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
   - {fileID: -1817147490, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
   - {fileID: -1581845013, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
-  - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
+  - {fileID: 1174838056, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
   clip: {fileID: 8300000, guid: 3f57efa470c261048973c7955f375dd1, type: 3}
+--- !u!95 &2624850753061772986
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757507520117358010}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &3607854293582401096
 SpriteRenderer:
   m_ObjectHideFlags: 0
