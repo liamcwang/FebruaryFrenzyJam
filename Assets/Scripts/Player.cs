@@ -184,7 +184,10 @@ public class Player : MonoBehaviour
             updatePowers(PowerUp.DODGE, new Effect(false, 0));
             Vector2 randVect = UnityEngine.Random.insideUnitCircle;
             randVect.Normalize();
-            transform.position += new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
+            Vector3 newPos = transform.position + new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
+            transform.position = newPos;
+            StartCoroutine(TeleportSound(newPos));
+
             
         } else {
             AudioSource.PlayClipAtPoint(sounds[3], transform.position);
@@ -202,7 +205,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    IEnumerator TeleportSound(Vector3 position) {
+        yield return new WaitForSeconds(1f);
+        Debug.Log($"Sound Played");
+        AudioSource.PlayClipAtPoint(sounds[4], position);
 
+    }
 }
 
 /// <summary>

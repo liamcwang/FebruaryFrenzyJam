@@ -129,6 +129,10 @@ public class PlayerCam : MonoBehaviour
     
 }
 
+/// <summary>
+/// Observing if an object is visible by a camera.
+/// I don't know why this works.
+/// </summary>
 public static class CameraEx
 {
     public static bool IsObjectVisible(this UnityEngine.Camera @this, Renderer renderer)

@@ -92,7 +92,7 @@ public class Boss : MonoBehaviour
         Debug.Log("Alas, I am debuffed! " + effect + ": " + value);
         switch(effect) {
             case Tower.Debuff.HP:
-                health -= (int)value;
+                health -= (int) (initialHealth * value);
                 break;
             case Tower.Debuff.TIMER:
                 spawnTimer += value;

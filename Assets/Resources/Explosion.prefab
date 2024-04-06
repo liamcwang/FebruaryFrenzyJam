@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2565165454968521334}
+  - component: {fileID: 1581968996539960031}
   - component: {fileID: 3224350222921935744}
   - component: {fileID: 518927851222219328}
   m_Layer: 0
@@ -28,11 +29,28 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.49, y: 1.49, z: 1.49}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1581968996539960031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3549877479192389924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a964a82ffc134892df7750c64f54f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debuffType: 0
+  explosions:
+  - Red
+  - Green
+  - Blue
 --- !u!95 &3224350222921935744
 Animator:
   serializedVersion: 5
