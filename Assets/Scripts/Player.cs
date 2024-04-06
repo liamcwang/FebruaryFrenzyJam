@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
     IEnumerator TeleportSound(Vector3 position) {
         yield return new WaitForSeconds(1f);
         Debug.Log($"Sound Played");
-        AudioSource.PlayClipAtPoint(sounds[4], position);
+        AudioSource.PlayClipAtPoint(sounds[4], position, 1f);
 
     }
 }
