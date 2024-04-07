@@ -60,10 +60,11 @@ MonoBehaviour:
   moveTimer: 0.5
   spawnTimer: 30
   scanTimer: 5
-  StopAndShootTimer: 5
-  FinishedStopAndShootTimer: 10
+  StopAndShootTimer: 10
+  FinishedStopAndShootTimer: 3
   StopShootChance: 50
   StopShootWaves: 10
+  StopShootRange: 20
   screamFrequency: 5
   pGameobject: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
