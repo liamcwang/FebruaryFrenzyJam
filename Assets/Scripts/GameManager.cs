@@ -16,7 +16,7 @@ public class GameManager {
     public enum GameState{START_MENU, GAME, VICTORY, DEFEAT, RESTART}
     public int enemyCount;
     
-    public GameState gameState {get; private set;}
+    public GameState gameState {get; set;}
     public Boss boss;
     public Player player;
     public PlayerCam playerCam;
@@ -65,6 +65,7 @@ public class GameManager {
     /// </summary>
     public static void StartGame() {
         Time.timeScale = 1;
+        GameManager.instance.gameState = GameState.GAME;
     }
 
     /// <summary>

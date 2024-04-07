@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -49,11 +50,33 @@ public class MainMenu : MonoBehaviour
                 setScreen(ScreenName.BOSS_VALUES, true);
                 setScreen(ScreenName.BOSS_TIMER, true);
                 setScreen(ScreenName.MINIMAP, true);
+                GameManager.StartGame();
                 break;
             default:
                 PlayerCam.instance.startUp();
             break;
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Application.Quit();
+        }
+        switch(GameManager.instance.gameState) {
+            case GameManager.GameState.START_MENU:
+                if (Input.anyKeyDown) {
+                    StartGame();
+                }
+                break;
+            case GameManager.GameState.DEFEAT:
+                if (Input.anyKeyDown) {
+                    RestartGame();
+                }
+                break;
+            default:
+            break;
+        }   
     }
 
     public void setScreen(ScreenName key, bool isActive) {
