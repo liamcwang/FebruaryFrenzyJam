@@ -8,6 +8,7 @@ using UnityEngine;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
+    public bool enabled = true;
     public GameObject enemy;
     public float spawnTimer = 5f;
 
@@ -23,7 +24,9 @@ public class EnemySpawner : MonoBehaviour
             if (enemy == null) {
                 Debug.LogWarning("No enemy available to spawn");
             }
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            if (enabled) {
+                Instantiate(enemy, transform.position, Quaternion.identity);
+            }
             yield return new WaitForSeconds(spawnTimer);
         }
     } 

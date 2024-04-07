@@ -45,6 +45,11 @@ public class MainMenu : MonoBehaviour
                 setScreen(ScreenName.VICTORY, true);
                 StartCoroutine(ExitSequence());
                 break;
+            case GameManager.GameState.RESTART:
+                setScreen(ScreenName.BOSS_VALUES, true);
+                setScreen(ScreenName.BOSS_TIMER, true);
+                setScreen(ScreenName.MINIMAP, true);
+                break;
             default:
                 PlayerCam.instance.startUp();
             break;

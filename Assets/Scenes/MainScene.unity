@@ -470,10 +470,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3032418155000322924, guid: 74734ef5e3ba3e54092a6a33a9b3abd6, type: 3}
-      propertyPath: spawnTimer
-      value: 60
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -576,21 +572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5119127537775380305, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8273437125294059989, guid: 439f161f127c0984b8dbda46181a0b86, type: 3}
-    - target: {fileID: 6553749777271461687, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
-      propertyPath: sounds.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0a8d516330e3fda478fe111ede2abba3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 754952851212602738, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1655820968}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
 --- !u!1 &1451748337
 GameObject:
@@ -5416,32 +5401,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1655820961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 754952851212602738, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
-  m_PrefabInstance: {fileID: 1156463510}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1655820968
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655820961}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

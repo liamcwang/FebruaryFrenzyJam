@@ -28,6 +28,7 @@ public class Boss : MonoBehaviour
     public AudioClip clip;
     public AudioSource audioSaus;
     public Animator anim;
+    private EnemySpawner spawner;
     private float initialHealth;
 
     void Awake() {
@@ -40,6 +41,8 @@ public class Boss : MonoBehaviour
         audioSaus = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spawner = GetComponent<EnemySpawner>();
+        spawner.enabled = false;
         target = GameManager.instance.player.transform;
         StartCoroutine(Scanning());
         StartCoroutine(BossTimer());
@@ -167,6 +170,8 @@ public class Boss : MonoBehaviour
         }
         asleep = false;
         PlayerCam.instance.BossTime();
+        spawner.enabled = true;
+
         StartCoroutine(Move());
     }
 

@@ -47,13 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf36aad5bbc7324fad9538a449d85c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 13
   effect: 0
   explosionOffset: 0.65
   debuffValues:
   - 0.05
-  - 10
-  - 2
+  - 5
+  - 3
   spiRend: {fileID: 3607854293582401096}
   sprites:
   - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}

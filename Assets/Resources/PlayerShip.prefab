@@ -49,15 +49,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc80a0a66c819cb41b547cbe1efd3064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
   maxSpeed: 10
   rotationFactor: 270
   fireRate: 3
   projectileSpeed: 20
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   dodgeRange: 20
+  maxExtraBullets: 8
+  maxExtraBackBullets: 4
   canShoot: 1
-  canDie: 0
+  canDie: 1
   sounds:
   - {fileID: 8300000, guid: bcc87d9adda84474590853f48f4ec37f, type: 3}
   - {fileID: 8300000, guid: 90a3382711941c845bb46795bf1d07c2, type: 3}

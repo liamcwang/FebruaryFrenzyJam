@@ -58,7 +58,6 @@ public class Tower : MonoBehaviour
             towerCollider.enabled = false;
 
             // looks safer to do it this way, rather than OnDestroy
-            boss.debuff(effect, magnitude);
             AudioSource.PlayClipAtPoint(clip, transform.position);
             StartCoroutine(DestroySequence());
             
@@ -71,6 +70,8 @@ public class Tower : MonoBehaviour
         Explosion.SpawnExplosion(explosionLocation, effect);
         spiRend.sprite = sprites[sprites.Length - 1];
         yield return new WaitForSeconds(0.5f);
+        boss.debuff(effect, magnitude);
+
         GameManager.instance.mainMenu.UpdateBossValues(effect);
         Destroy(gameObject);
 

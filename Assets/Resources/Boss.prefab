@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752572720057151431}
   - component: {fileID: 3032418155000322924}
+  - component: {fileID: 8100300402911490632}
   - component: {fileID: 3472808299580411892}
   - component: {fileID: 7336496725535921671}
   - component: {fileID: 7248060540715978913}
@@ -50,11 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6456d8e32a03d044b826332fc62f4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  defense: 5
-  speed: 30
+  health: 600
+  defense: 0
+  speed: 40
   minSpeed: 20
-  maxSpeed: 40
+  maxSpeed: 150
   turnFactor: 7
   moveTimer: 0.5
   spawnTimer: 20
@@ -63,6 +64,21 @@ MonoBehaviour:
   clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
   audioSaus: {fileID: 0}
   anim: {fileID: 0}
+--- !u!114 &8100300402911490632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594135223730586952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a3423f4ab3865a4ca6a71e89519a4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  enemy: {fileID: 4050756494412264869, guid: 02cbf08494b8ac74fb29eb3f1b79efd5, type: 3}
+  spawnTimer: 5
 --- !u!212 &3472808299580411892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -277,7 +293,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
