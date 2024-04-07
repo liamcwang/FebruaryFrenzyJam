@@ -68,6 +68,7 @@ MonoBehaviour:
   screamFrequency: 5
   pGameobject: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
+  purging: {fileID: 8300000, guid: 736a47dbc0b693b4f8d6bf5706b0c6b7, type: 3}
   audioSaus: {fileID: 0}
   anim: {fileID: 0}
   projectileSpeed: 5

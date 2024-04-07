@@ -470,6 +470,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3032418155000322924, guid: 74734ef5e3ba3e54092a6a33a9b3abd6, type: 3}
+      propertyPath: purging
+      value: 
+      objectReference: {fileID: 8300000, guid: 736a47dbc0b693b4f8d6bf5706b0c6b7, type: 3}
+    - target: {fileID: 3032418155000322924, guid: 74734ef5e3ba3e54092a6a33a9b3abd6, type: 3}
+      propertyPath: FinishedStopAndShootTimer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
