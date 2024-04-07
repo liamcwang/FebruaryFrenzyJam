@@ -56,8 +56,8 @@ MonoBehaviour:
   projectileSpeed: 20
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   dodgeRange: 20
-  maxExtraBullets: 8
-  maxExtraBackBullets: 4
+  maxExtraBullets: 6
+  maxExtraBackBullets: 2
   canShoot: 1
   canDie: 1
   sounds:
@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 90a3382711941c845bb46795bf1d07c2, type: 3}
   - {fileID: 8300000, guid: 9be149300a5953d44bd66dc383d5f5b0, type: 3}
   - {fileID: 8300000, guid: 83cf80bb2f84a3b49ad71c6796815d41, type: 3}
-  - {fileID: 8300000, guid: e74cf81a0e4766b4993485b25a5ef6be, type: 3}
+  - {fileID: 8300000, guid: 0a8d516330e3fda478fe111ede2abba3, type: 3}
   audioSaus: {fileID: 0}
 --- !u!212 &5119127537775380305
 SpriteRenderer:

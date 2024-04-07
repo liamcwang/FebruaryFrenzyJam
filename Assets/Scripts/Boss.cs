@@ -20,8 +20,15 @@ public class Boss : MonoBehaviour
     public float moveTimer = 0.5f; 
     public float spawnTimer = 120f;
     public float scanTimer = 5f;
+    public float StopAndShootTimer = 5f;
+    public float FinishedStopAndShootTimer = 10f;
+    public int StopShootChance = 20;
+    public int StopShootWaves = 5;
+    public float StopShootRange = 20f;
     public int screamFrequency = 10; // as in, the number of moves it takes to scream
-
+    public GameObject pGameobject;
+    
+    private bool canMove = true;
     private bool asleep = true;
     private Rigidbody2D rb;
     private Transform target;
@@ -30,6 +37,9 @@ public class Boss : MonoBehaviour
     public Animator anim;
     private EnemySpawner spawner;
     private float initialHealth;
+
+    public float projectileSpeed = 20f;
+
 
     void Awake() {
         GameManager.instance.boss = this;
@@ -140,21 +150,65 @@ public class Boss : MonoBehaviour
     private IEnumerator Move() {
         int moveCount = 0;
         while(true) {
-            moveCount++;
-            moveCount = moveCount % screamFrequency;
-            if (moveCount == 0) {
-                audioSaus.Play(0);
+            if (canMove) {
+                moveCount++;
+                moveCount = moveCount % screamFrequency;
+                if (moveCount == 0) {
+                    audioSaus.Play(0);
+                }
+                
+                Vector2 forceVector;
+                
+                forceVector= transform.up * speed;
+                
+                            
+                rb.AddForce(forceVector, ForceMode2D.Impulse);
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            }
+            yield return new WaitForSeconds(moveTimer);
+
+
+        }
+    }
+
+    private IEnumerator StopAndShoot() {
+        while (true) {
+            yield return new WaitForSeconds(StopAndShootTimer);
+            Vector3 playerPos = new Vector3(target.transform.position.x, target.transform.position.y, 0);
+            Vector3 currentPos = transform.position;
+            Vector2 heading = new Vector2();
+
+            heading.x = playerPos.x - currentPos.x;
+            heading.y = playerPos.y - currentPos.y;
+
+            float distanceSquared = heading.x * heading.x + heading.y * heading.y;
+            float distance = Mathf.Sqrt(distanceSquared);
+
+            if (distance < StopShootRange) {
+                canMove = false;
+                yield return new WaitForSeconds(2f);
+                for (int i = 0; i < StopShootWaves; i++) {
+                    Quaternion newRot = Quaternion.identity;
+                    Vector3 shootVector = Vector3.zero;
+                    int mod2 = i % 2;
+                    float extraOffset = 7.5f * mod2; 
+                    for (int j = 0; j < 24; j++) {
+                        float offset = 15 + extraOffset;
+                        shootVector.z = shootVector.z + offset;
+                        newRot.eulerAngles = shootVector;
+                        GameObject p = Instantiate(pGameobject, transform.position, newRot);
+                        Projectile projectile = p.GetComponent<Projectile>();
+                        projectile.speed = projectileSpeed;
+                        projectile.origin = Projectile.Origin.ENEMY;
+                    }
+                    yield return new WaitForSeconds(1f);
+                }
+                yield return new WaitForSeconds(FinishedStopAndShootTimer);
+                canMove = true;
             }
             
-            Vector2 forceVector;
-            
-            forceVector= transform.up * speed;
-            
-                          
-            rb.AddForce(forceVector, ForceMode2D.Impulse);
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
-            yield return new WaitForSeconds(moveTimer);
         }
+           
     }
 
     /// <summary>
@@ -173,6 +227,7 @@ public class Boss : MonoBehaviour
         spawner.enabled = true;
 
         StartCoroutine(Move());
+        StartCoroutine(StopAndShoot());
     }
 
     

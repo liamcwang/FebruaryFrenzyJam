@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
                     powUpDict[pow] = newEff;
                 } else {
                     newEff.magnitude += powUpDict[pow].magnitude;
-                    newEff.magnitude = newEff.magnitude > maxExtraBullets ? maxExtraBullets : newEff.magnitude;
+                    newEff.magnitude = newEff.magnitude > maxExtraBackBullets ? maxExtraBackBullets : newEff.magnitude;
                     powUpDict[pow] = newEff;
                 }
                 break;

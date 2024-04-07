@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class Projectile : MonoBehaviour
 {
-    public enum Origin{PLAYER, ENEMY, VOID}; // Void was added, incase we wanted rogue projectiles
+    public enum Origin{PLAYER, ENEMY, BOSS, VOID}; // Void was added, incase we wanted rogue projectiles
     public enum Behavior{DEFAULT, HOMING};
     public float speed = 20;
     public int damage = 1;
@@ -60,7 +60,7 @@ public class Projectile : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hit!");
-        if (origin != Origin.ENEMY) {
+        if (origin != Origin.ENEMY || origin != Origin.BOSS) {
             GameObject gObj = other.gameObject;
             // lotta room for improvement here
             // Could make a for loop for every type of damageable object

@@ -51,19 +51,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6456d8e32a03d044b826332fc62f4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 400
   defense: 0
   speed: 40
   minSpeed: 20
   maxSpeed: 150
   turnFactor: 7
   moveTimer: 0.5
-  spawnTimer: 20
+  spawnTimer: 30
   scanTimer: 5
+  StopAndShootTimer: 5
+  FinishedStopAndShootTimer: 10
+  StopShootChance: 50
+  StopShootWaves: 10
   screamFrequency: 5
+  pGameobject: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   clip: {fileID: 8300000, guid: 3125f744248084641b9b360761a0e356, type: 3}
   audioSaus: {fileID: 0}
   anim: {fileID: 0}
+  projectileSpeed: 5
 --- !u!114 &8100300402911490632
 MonoBehaviour:
   m_ObjectHideFlags: 0
