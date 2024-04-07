@@ -64,6 +64,7 @@ public class GameManager {
     /// Start of game functions go here.
     /// </summary>
     public static void StartGame() {
+        Cursor.visible = false;
         Time.timeScale = 1;
         GameManager.instance.gameState = GameState.GAME;
     }
@@ -110,6 +111,7 @@ public class GameManager {
     /// Defeat functions go here.
     /// </summary>
     public static void Defeat(){
+
         instance.gameState = GameState.DEFEAT;
         instance.mainMenu.Defeat();
     }

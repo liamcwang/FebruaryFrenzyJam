@@ -70,8 +70,10 @@ public class MainMenu : MonoBehaviour
                 }
                 break;
             case GameManager.GameState.DEFEAT:
-                if (Input.anyKeyDown) {
-                    RestartGame();
+                if (UIRef[ScreenName.DEFEAT][0].activeSelf) {
+                    if (Input.anyKeyDown) {
+                        RestartGame();
+                    }
                 }
                 break;
             default:
@@ -129,6 +131,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator DefeatSequence() {
         yield return new WaitForSeconds(2f);
         setScreen(ScreenName.DEFEAT, true);
+        Cursor.visible = true;
         Time.timeScale = 0;
     }
 
