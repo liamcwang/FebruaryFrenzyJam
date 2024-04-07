@@ -23,7 +23,7 @@ public class Explosion : MonoBehaviour
 
     #if UNITY_EDITOR
     [MenuItem("GameFunctions/SpawnExplosion")]
-    static public void SpawnFixedExplosion() {
+    static public void SpawnRandExplosion() {
         Vector3 pos = Vector3.zero;
         int randInt = Random.Range(0, Tower.Debuff.GetNames(typeof(Tower.Debuff)).Length);
         SpawnExplosion(pos, (Tower.Debuff) randInt);

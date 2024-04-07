@@ -11,6 +11,7 @@ public class PowerUp : MonoBehaviour
     public Player.PowerUp type;
     public float fireRate = 10f;
     public float moreBullets = 2f;
+    public float backBullets = 2f;
     [SerializeField] private Sprite[] sprites;
     private SpriteRenderer spiRend;
     private Effect effect;
@@ -28,6 +29,9 @@ public class PowerUp : MonoBehaviour
                 break;
             case Player.PowerUp.MORE_BULLETS:
                 effect = new Effect(true, moreBullets);
+                break;
+            case Player.PowerUp.BEHIND_SHOT:
+                effect = new Effect(true, backBullets);
                 break;
             default:
                 effect = new Effect(true, 0);

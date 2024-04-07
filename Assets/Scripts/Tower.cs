@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
     private Collider2D towerCollider;
 
     private Vector3 explosionLocation = Vector3.zero;
-
+    private bool canDamage = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,29 +50,32 @@ public class Tower : MonoBehaviour
     /// </summary>
     /// <param name="damage"></param>
     public void takeDamage(float damage) {
+        if (!canDamage) return;
         health -= damage;
 
         if (health <= 0) {
+            canDamage = false;
+            towerCollider.enabled = false;
+
             // looks safer to do it this way, rather than OnDestroy
             boss.debuff(effect, magnitude);
             AudioSource.PlayClipAtPoint(clip, transform.position);
-            GameManager.instance.mainMenu.UpdateBossValues(effect);
             StartCoroutine(DestroySequence());
             
         }
     }
 
     IEnumerator DestroySequence() {
-        towerCollider.enabled = false;
         explosionLocation.x = transform.position.x;
         explosionLocation.y = transform.position.y + explosionOffset;
         Explosion.SpawnExplosion(explosionLocation, effect);
         spiRend.sprite = sprites[sprites.Length - 1];
         yield return new WaitForSeconds(0.5f);
+        GameManager.instance.mainMenu.UpdateBossValues(effect);
         Destroy(gameObject);
 
     }
-
+    
     #if UNITY_EDITOR
     private Vector3 cubeSize = new Vector3(0.5f,0.5f,0.5f);
     private Vector3 gizmoLocation = Vector3.zero;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1178958262307318952}
   - component: {fileID: 4847232158474974759}
   - component: {fileID: 4860771342852155239}
+  - component: {fileID: 4039867495982519516}
   - component: {fileID: 2140173919271411813}
   - component: {fileID: -911094950456287940}
   m_Layer: 0
@@ -56,6 +57,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 59417b7474f491d4685ecf887024e88f, type: 3}
   - {fileID: 8300000, guid: 931dcdc69ad9d53479468a04e01717c7, type: 3}
   - {fileID: 8300000, guid: 67ab8570401636f448380e1bc17423e0, type: 3}
+  - {fileID: 8300000, guid: aa0a51a808b813a448a5817e1fd5a4da, type: 3}
   - {fileID: 8300000, guid: db69edd928adc784d9685433bee40761, type: 3}
   - {fileID: 8300000, guid: 844f901777cbd544ea2def6e019fc81e, type: 3}
   audioSaus: {fileID: -911094950456287940}
@@ -69,7 +71,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0.2679245, b: 0.039942767, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -94,7 +96,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -110,6 +112,26 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &4039867495982519516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2597833948963497348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 16
+  m_RefResolutionX: 256
+  m_RefResolutionY: 240
+  m_UpscaleRT: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!81 &2140173919271411813
 AudioListener:
   m_ObjectHideFlags: 0

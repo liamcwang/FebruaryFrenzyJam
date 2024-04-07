@@ -91,6 +91,8 @@ public class Enemy : MonoBehaviour
             }
             AudioSource.PlayClipAtPoint(clip, transform.position);
             GameManager.instance.enemyCount--;
+            int randInt = Random.Range(0, Tower.Debuff.GetNames(typeof(Tower.Debuff)).Length);
+            Explosion.SpawnExplosion(transform.position, (Tower.Debuff) randInt);
             Destroy(gameObject);
         }
     }

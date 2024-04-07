@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Should be renamed to some kind of manager thing, because it actually
@@ -9,7 +10,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MainMenu : MonoBehaviour
 {
-    public enum ScreenName {START, DEFEAT, VICTORY, CREDITS, BOSS_VALUES}; 
+    public enum ScreenName {START, DEFEAT, VICTORY, CREDITS, MINIMAP, BOSS_VALUES, BOSS_TIMER}; 
     [SerializeField] private UIObject[] UIElements;
     private Dictionary<ScreenName, List<GameObject>> UIRef;
     // TODO: Document Main Menu
@@ -59,6 +60,8 @@ public class MainMenu : MonoBehaviour
     public void StartGame() {
         setScreen(ScreenName.START, false);
         setScreen(ScreenName.BOSS_VALUES, true);
+        setScreen(ScreenName.BOSS_TIMER, true);
+        setScreen(ScreenName.MINIMAP, true);
         GameManager.StartGame();
         PlayerCam.instance.startUp();
     }
@@ -87,6 +90,12 @@ public class MainMenu : MonoBehaviour
                 bar.IncrementBar();
             }
         }
+    }
+    
+    public void SetBossTimer(float currentTime, float maxTime) {
+        Slider slider = UIRef[ScreenName.BOSS_TIMER][0].GetComponent<Slider>();
+        slider.value = currentTime;
+        slider.maxValue = maxTime;
     }
 
     private IEnumerator DefeatSequence() {

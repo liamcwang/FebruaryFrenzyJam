@@ -163,6 +163,7 @@ public class Boss : MonoBehaviour
         while (currentTimer < spawnTimer) {
             yield return new WaitForSeconds(1);
             currentTimer += 1;
+            GameManager.instance.mainMenu.SetBossTimer(currentTimer, spawnTimer);
         }
         asleep = false;
         PlayerCam.instance.BossTime();

@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     
     public float dodgeRange = 20f; // TODO: Move this value to the powerup, probably
     
+    public int maxExtraBullets = 8;
+    public int maxExtraBackBullets = 4;
+
     private Dictionary<PowerUp, Effect> powUpDict;
     private float fireTimer = 1f;
     private bool alive = true;
@@ -97,16 +100,38 @@ public class Player : MonoBehaviour
     /// <param name="pow"></param>
     /// <param name="newEff"></param>
     public void updatePowers(PowerUp pow, Effect newEff) {
-        powUpDict[pow] = newEff;
         switch(pow) {
             case PowerUp.FIRE_RATE:
+                powUpDict[pow] = newEff;
+
                 if (newEff.active) {
+                    
                     fireTimer = 1f/(fireRate* (float)newEff.magnitude);
                 } else{ // return to old firerate if set to false
                     fireTimer = 1f/fireRate;
                 }                
                 break;
+            case PowerUp.MORE_BULLETS:
+                if (!powUpDict[pow].active) {
+                    powUpDict[pow] = newEff;
+                } else {
+                    newEff.magnitude += powUpDict[pow].magnitude;
+                    newEff.magnitude = newEff.magnitude > maxExtraBullets ? maxExtraBullets : newEff.magnitude;
+                    powUpDict[pow] = newEff;
+                }
+                break;
+            case PowerUp.BEHIND_SHOT:
+                if (!powUpDict[pow].active) {
+                    newEff.magnitude = 0;
+                    powUpDict[pow] = newEff;
+                } else {
+                    newEff.magnitude += powUpDict[pow].magnitude;
+                    newEff.magnitude = newEff.magnitude > maxExtraBullets ? maxExtraBullets : newEff.magnitude;
+                    powUpDict[pow] = newEff;
+                }
+                break;
             default:
+                powUpDict[pow] = newEff;
                 // nothing needs to be updated
                 break;
         }
@@ -126,8 +151,10 @@ public class Player : MonoBehaviour
             Vector3 eulerRot = rot.eulerAngles;
             spawnProjectile(p, transform.position,rot, Projectile.Behavior.DEFAULT);
 
+            Quaternion newRot = Quaternion.identity;
+            Vector3 shootVector = Vector3.zero;
+
             if(powUpDict[PowerUp.MORE_BULLETS].active) {
-                
                 int numBullets = (int)powUpDict[PowerUp.MORE_BULLETS].magnitude;
                 int offMult = 0;
                 for (int i = 0; i < numBullets; i++) {
@@ -137,15 +164,31 @@ public class Player : MonoBehaviour
                     }
                     int LeftRight =  (mod2 == 0) ? -1 : 1;
                     float offset = 15 * LeftRight * offMult;
-                    Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + offset);
+                    shootVector.z = eulerRot.z + offset;
+                    newRot.eulerAngles = shootVector;
                     spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
                 }
             }
 
             if(powUpDict[PowerUp.BEHIND_SHOT].active) {
                 if (bulletCount % 3 == 0) {
-                    Quaternion newRot = Quaternion.Euler(eulerRot.x, eulerRot.y, eulerRot.z + 180);
-                    spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
+                    int numBullets = (int)powUpDict[PowerUp.BEHIND_SHOT].magnitude;
+                    int offMult = 0;
+                    shootVector.z = eulerRot.z + 180;
+                    newRot.eulerAngles = shootVector;
+                    spawnProjectile(p, transform.position,newRot, Projectile.Behavior.DEFAULT);
+
+                    for (int i = 0; i < numBullets; i++) {
+                        int mod2 = i % 2;
+                        if (mod2 == 0) {
+                            offMult++;
+                        }
+                        int LeftRight =  (mod2 == 0) ? -1 : 1;
+                        float offset = 15 * LeftRight * offMult;
+                        shootVector.z = eulerRot.z + 180 + offset;
+                        newRot.eulerAngles = shootVector;
+                        spawnProjectile(p, transform.position, newRot, Projectile.Behavior.DEFAULT);
+                    }
                 }
             /*} else if(powUpDict[PowerUp.HOMING_SHOT].active){
                 if (bulletCount % 5 == 0) {
@@ -186,7 +229,7 @@ public class Player : MonoBehaviour
             randVect.Normalize();
             Vector3 newPos = transform.position + new Vector3(randVect.x, randVect.y, 0f) * dodgeRange;
             transform.position = newPos;
-            StartCoroutine(TeleportSound(newPos));
+            AudioSource.PlayClipAtPoint(sounds[4], transform.position, 1f);
 
             
         } else {
@@ -205,12 +248,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator TeleportSound(Vector3 position) {
-        yield return new WaitForSeconds(1f);
-        Debug.Log($"Sound Played");
-        AudioSource.PlayClipAtPoint(sounds[4], position, 1f);
 
-    }
 }
 
 /// <summary>

@@ -52,8 +52,8 @@ MonoBehaviour:
   explosionOffset: 0.65
   debuffValues:
   - 0.05
-  - 15
-  - 5
+  - 10
+  - 2
   spiRend: {fileID: 3607854293582401096}
   sprites:
   - {fileID: 1113231425, guid: 35ad744556219b44d809ec643a7092f8, type: 3}
