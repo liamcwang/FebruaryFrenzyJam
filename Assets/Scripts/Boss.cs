@@ -33,6 +33,7 @@ public class Boss : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     public AudioClip clip;
+    public AudioClip purging;
     public AudioSource audioSaus;
     public Animator anim;
     private EnemySpawner spawner;
@@ -154,6 +155,7 @@ public class Boss : MonoBehaviour
                 moveCount++;
                 moveCount = moveCount % screamFrequency;
                 if (moveCount == 0) {
+                    audioSaus.clip = clip;
                     audioSaus.Play(0);
                 }
                 
@@ -186,13 +188,16 @@ public class Boss : MonoBehaviour
 
             if (distance < StopShootRange) {
                 canMove = false;
+                audioSaus.clip = purging;
+                audioSaus.Play(0);
                 yield return new WaitForSeconds(2f);
                 for (int i = 0; i < StopShootWaves; i++) {
                     Quaternion newRot = Quaternion.identity;
                     Vector3 shootVector = Vector3.zero;
                     int mod2 = i % 2;
                     float extraOffset = 7.5f * mod2;
-                    float offset = 15f + extraOffset;
+                    shootVector.z += extraOffset;
+                    float offset = 15f;
                     for (int j = 0; j < 24; j++) {
                         shootVector.z = shootVector.z + offset;
                         newRot.eulerAngles = shootVector;
