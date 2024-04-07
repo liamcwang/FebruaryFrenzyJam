@@ -191,15 +191,16 @@ public class Boss : MonoBehaviour
                     Quaternion newRot = Quaternion.identity;
                     Vector3 shootVector = Vector3.zero;
                     int mod2 = i % 2;
-                    float extraOffset = 7.5f * mod2; 
+                    float extraOffset = 7.5f * mod2;
+                    float offset = 15f + extraOffset;
                     for (int j = 0; j < 24; j++) {
-                        float offset = 15 + extraOffset;
                         shootVector.z = shootVector.z + offset;
                         newRot.eulerAngles = shootVector;
                         GameObject p = Instantiate(pGameobject, transform.position, newRot);
                         Projectile projectile = p.GetComponent<Projectile>();
                         projectile.speed = projectileSpeed;
-                        projectile.origin = Projectile.Origin.ENEMY;
+                        projectile.origin = Projectile.Origin.BOSS;
+                        projectile.spiRend.color = Color.white;
                     }
                     yield return new WaitForSeconds(1f);
                 }

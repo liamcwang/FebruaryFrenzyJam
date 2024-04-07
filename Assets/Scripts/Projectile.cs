@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     public LayerMask ignoreLayer;
     public float decayTimer = 5f;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private SpriteRenderer spiRend;
+    public SpriteRenderer spiRend;
     [SerializeField] private Sprite[] sprites;
 
     // Start is called before the first frame update
@@ -60,7 +60,7 @@ public class Projectile : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other) {
         //Debug.Log("Hit!");
-        if (origin != Origin.ENEMY || origin != Origin.BOSS) {
+        if (origin != Origin.ENEMY && origin != Origin.BOSS) {
             GameObject gObj = other.gameObject;
             // lotta room for improvement here
             // Could make a for loop for every type of damageable object
