@@ -56,6 +56,8 @@ MonoBehaviour:
   projectileSpeed: 20
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
   dodgeRange: 20
+  maxExtraBullets: 8
+  maxExtraBackBullets: 4
   canShoot: 1
   canDie: 0
   sounds:
@@ -106,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 226f5820c754c7e41ad07d8074ea8374, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d1bd15c56ae29d449ff156c44b8bb56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
