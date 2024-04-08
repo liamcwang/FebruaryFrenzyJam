@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     public bool canDie = true;
     public AudioClip[] sounds;
     public AudioSource audioSaus;
+    Vector3 motionVector = Vector3.zero;
+
 
     void Awake() {
         GameManager.instance.player = this;
@@ -65,31 +67,33 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // controlled via axes
         float xMove = Input.GetAxis("MoveHorizontal");
         float yMove = Input.GetAxis("MoveVertical");
-        float xShoot = Input.GetAxis("ShootHorizontal");
         // float yShoot = Input.GetAxis("ShootVertical");
-        Vector2 motionVector = Vector2.zero;
 
 
         if (xMove != 0 || yMove != 0) {
-            motionVector = new Vector2 (xMove, yMove);
+            motionVector = new Vector3 (xMove, yMove, 0);
+            motionVector = motionVector * maxSpeed;
+            rb.MovePosition(transform.position + (motionVector * Time.deltaTime));
         }
         
-        rb.velocity = motionVector * maxSpeed;
-
+        
+        float xShoot = Input.GetAxis("ShootHorizontal");
         if (xShoot != 0) {
-            float newAngle = -xShoot * rotationFactor;
+            float newAngle = -xShoot * rotationFactor * Time.deltaTime;
+            newAngle = transform.rotation.eulerAngles.z + newAngle;
             //float newAngle = -Mathf.Atan2(xShoot, yShoot) * 180/Mathf.PI;
             //newAngle = Mathf.Lerp(rb.rotation, newAngle, Time.deltaTime * rotationFactor);
-            rb.rotation += newAngle * Time.deltaTime; 
-            // REMEMBER: don't interpolate, it lags everything
+            rb.MoveRotation(newAngle);
+            // aw, interpolation is good actually
         }
-
+        
     }
+
 
     /// <summary>
     /// To simplify changing the states of powers
@@ -210,7 +214,7 @@ public class Player : MonoBehaviour
         Instantiate(pGameObject, position, rot);
         Projectile projectile = pGameObject.GetComponent<Projectile>();
         projectile.damage = damage;
-        projectile.speed = projectileSpeed;
+        projectile.speed = projectileSpeed + motionVector.magnitude;
         projectile.origin = Projectile.Origin.PLAYER;
         projectile.behaviorState = PB;
         audioSaus.clip = sounds[0];

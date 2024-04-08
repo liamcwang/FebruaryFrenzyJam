@@ -413,7 +413,20 @@ PrefabInstance:
       propertyPath: m_PixelSnapping
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4039867495982519516, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: m_RefResolutionX
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039867495982519516, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: m_RefResolutionY
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 4860771342852155239, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
+      propertyPath: orthographic size
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4039867495982519516, guid: 03ae4f9d1f33a884bb88bcbb11fb8487, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -572,10 +585,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6553749777271461687, guid: b9239ece796463c49a66a0dbacb2b85d, type: 3}
-      propertyPath: canDie
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -656,7 +665,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 15.5, y: 14.5, z: 0}
+  m_ChunkCullingBounds: {x: 7.5, y: 7, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0

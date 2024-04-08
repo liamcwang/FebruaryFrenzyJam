@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxSpeed: 10
+  maxSpeed: 13
   rotationFactor: 270
   fireRate: 3
   projectileSpeed: 20
@@ -59,7 +59,7 @@ MonoBehaviour:
   maxExtraBullets: 6
   maxExtraBackBullets: 2
   canShoot: 1
-  canDie: 1
+  canDie: 0
   sounds:
   - {fileID: 8300000, guid: bcc87d9adda84474590853f48f4ec37f, type: 3}
   - {fileID: 8300000, guid: 90a3382711941c845bb46795bf1d07c2, type: 3}
@@ -142,7 +142,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0

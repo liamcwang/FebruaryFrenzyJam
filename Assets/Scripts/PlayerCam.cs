@@ -54,7 +54,7 @@ public class PlayerCam : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // REMINDER: Fast distance calculation
         playerPos = new Vector3(player.transform.position.x, player.transform.position.y + yTrackOffset, Z_POS);
@@ -67,6 +67,9 @@ public class PlayerCam : MonoBehaviour
         float distanceSquared = heading.x * heading.x + heading.y * heading.y;
         float distance = Mathf.Sqrt(distanceSquared); // yes, this distance calculation is faster, apparently
         if (distance < 100f) {
+            // playerPos.x = Mathf.RoundToInt(playerPos.x * 16)/16;
+            // playerPos.y = Mathf.RoundToInt(playerPos.y * 16)/16;
+            //transform.position = playerPos;
             transform.position = Vector3.Lerp(transform.position, playerPos, trackingFactor * Time.deltaTime);
         } else{
             Vector3 newPos = new Vector3(playerPos.x - previousOffset.x, playerPos.y - previousOffset.y, Z_POS);

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2292440849934591996
 Transform:
   m_ObjectHideFlags: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   moveTimer: 1.5
   dropRate: 0.2
   p: {fileID: 795670934223383931, guid: 53690f89331781b4282b9ed98ea1050a, type: 3}
-  powUpPrefab: {fileID: 2980965563536737882, guid: 218f2982d50e94c42aff273e25be7abe, type: 3}
   sprites:
   - {fileID: 21300000, guid: 8d9d86952f142414b8ea0ab81deabfe7, type: 3}
   - {fileID: 21300000, guid: de7b25f4bc7e9a248b9a4249ae37d9da, type: 3}
