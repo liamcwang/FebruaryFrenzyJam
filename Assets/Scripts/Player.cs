@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         
         float xShoot = Input.GetAxis("ShootHorizontal");
         if (xShoot != 0) {
-            float newAngle = -xShoot * rotationFactor * Time.deltaTime;
+            float newAngle = -xShoot * rotationFactor * Time.fixedDeltaTime;
             newAngle = transform.rotation.eulerAngles.z + newAngle;
             //float newAngle = -Mathf.Atan2(xShoot, yShoot) * 180/Mathf.PI;
             //newAngle = Mathf.Lerp(rb.rotation, newAngle, Time.deltaTime * rotationFactor);
