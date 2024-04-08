@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  maxSpeed: 13
+  maxSpeed: 10
   rotationFactor: 270
   fireRate: 3
   projectileSpeed: 20

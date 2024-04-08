@@ -78,9 +78,12 @@ public class Player : MonoBehaviour
         if (xMove != 0 || yMove != 0) {
             motionVector = new Vector3 (xMove, yMove, 0);
             motionVector = motionVector * maxSpeed;
-            rb.MovePosition(transform.position + (motionVector * Time.deltaTime));
+            // rb.MovePosition(transform.position + (motionVector * Time.deltaTime));
+            // both work, needs investigating
         }
         
+        rb.velocity = motionVector;
+
         
         float xShoot = Input.GetAxis("ShootHorizontal");
         if (xShoot != 0) {
