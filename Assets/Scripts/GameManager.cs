@@ -31,7 +31,8 @@ public class GameManager {
     private GameManager(GameState setGameState) {
         enemyCount = 0;
         gameState = setGameState;
-        
+        Screen.SetResolution(864, 480, false);
+
 
         // initialize your game manager here. Do not reference to GameObjects here (i.e. GameObject.Find etc.)
         // because the game manager will be created before the objects

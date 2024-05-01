@@ -60,9 +60,10 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Application.Quit();
-        }
+        
+        // if (Input.GetKeyDown(KeyCode.Escape)) {
+        //     Application.Quit();
+        // }
         switch(GameManager.instance.gameState) {
             case GameManager.GameState.START_MENU:
                 if (Input.anyKeyDown) {
